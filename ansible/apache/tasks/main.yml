@@ -1,4 +1,0 @@
----
-# Configure HTTPD
-- name: Configure HTTPD
-  include_tasks: apache.yml
