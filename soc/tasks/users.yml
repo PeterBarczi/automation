@@ -9,7 +9,7 @@
   - name: Setup | authorized key upload
     authorized_key: user={{ item.username }}
       key="{{ lookup('file', 'files/{{ item.username }}.pub') }}"
-    when: '{{ item.use_sudo }} == yes'
+    when: ' item.use_sudo  == yes'
     with_items: '{{users}}'
 
   - name: Sudoers | update sudoers file and validate
@@ -18,5 +18,5 @@
       line='{{ item.username }} ALL=(ALL) NOPASSWD: ALL'
       regexp='^{{ item.username }} .*'
       state=present"
-    when: '{{ item.use_sudo }} == yes'
+    when: ' item.use_sudo == yes'
     with_items: '{{users}}'
