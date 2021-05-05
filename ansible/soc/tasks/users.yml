@@ -1,0 +1,19 @@
+---
+- name: Install HTTPD
+  yum: 
+    name: httpd
+    state: installed
+
+- name: Configure index.html
+  template:
+    src: index.html.j2
+    dest: /var/www/html/index.html
+    mode: 0644
+    owner: "root"
+    group: "root"
+
+- name: Check status of HTTPD
+  service:
+    name: httpd
+    state: started
+    enabled: yes
