@@ -1,0 +1,22 @@
+---
+- name: Add group "tux" to remote server
+    group:
+      name: tux
+      gid: 666
+      state: present
+
+- name: Add user "tux" to remote server
+     user:
+       name: tux
+       comment: "Privileged User"
+       uid: 555
+       group: tux
+#       groups: office,warehouse
+#       append: yes
+       shell: /bin/bash
+
+#- name: Remove user "Games" from remote server
+#     user:
+#       name: games
+#       state: absent
+#       remove: yes
