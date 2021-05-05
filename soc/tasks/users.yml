@@ -1,22 +1,22 @@
 ---
-- name: Add group "tux" to remote server
-    group:
-      name: tux
-      gid: 666
-      state: present
+  - include_vars: users.yml
 
-- name: Add user "tux" to remote server
-     user:
-       name: tux
-       comment: "Privileged User"
-       uid: 555
-       group: tux
-#       groups: office,warehouse
-#       append: yes
-       shell: /bin/bash
+  
+  - name: Create users with home directory
+    user: name={{ item.username }} shell=/bin/bash createhome=yes comment='Created by Ansible'
+    with_items: '{{users}}'
 
-#- name: Remove user "Games" from remote server
-#     user:
-#       name: games
-#       state: absent
-#       remove: yes
+  - name: Setup | authorized key upload
+    authorized_key: user={{ item.username }}
+      key="{{ lookup('file', 'files/{{ item.username }}.pub') }}"
+    when: '{{ item.use_sudo }} == True'
+    with_items: '{{users}}'
+
+  - name: Sudoers | update sudoers file and validate
+    lineinfile: "dest=/etc/sudoers
+      insertafter=EOF
+      line='{{ item.username }} ALL=(ALL) NOPASSWD: ALL'
+      regexp='^{{ item.username }} .*'
+      state=present"
+    when: '{{ item.use_sudo }} == True'
+    with_items: '{{users}}'
