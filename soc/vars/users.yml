@@ -1,11 +1,10 @@
 ---
 users:
-
-  - username: user2
-    use_sudo: yes
-
-  - username: user4
-    use_sudo: no
-
-  - username: user6
-    use_sudo: no
+  - name: fulvio
+    sudoer: yes
+    auth_key: ssh-rsa blahblahblahsomekey this is actually the public key in cleartext
+  - name: pety
+    group: admin
+    sudoer: no
+    auth_key: ssh-rsa blahblahblah ansible-generated on default
+#   keyfiles: keyfiles/plone_buildout
