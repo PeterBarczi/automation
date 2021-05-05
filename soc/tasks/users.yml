@@ -19,7 +19,7 @@
     append=yes
     groups={{ item.group  }}
     # this is just a default password, I think it's SHA512 for "changeme"
-    password=$6$rounds=656000$iO7Q9L6/w8dUUQVf$rmtnxrQ15TGAfG5ODxQ/WGyEpTwk.vD1W.UtedmOlo9YNkrIwapYMjmKmteEnUJmRYucgUVxXUQy7gtenpLmw0
+    password="$6$rounds=656000$iO7Q9L6/w8dUUQVf$rmtnxrQ15TGAfG5ODxQ/WGyEpTwk.vD1W.UtedmOlo9YNkrIwapYMjmKmteEnUJmRYucgUVxXUQy7gtenpLmw0"
     update_password=on_create
   when: item.group is defined
   with_items: {{ users }}
@@ -29,7 +29,7 @@
     name={{ item.name }}
     system={{ item.sudoer }}
     shell=/bin/bash
-    password=$6$rounds=656000$iO7Q9L6/w8dUUQVf$rmtnxrQ15TGAfG5ODxQ/WGyEpTwk.vD1W.UtedmOlo9YNkrIwapYMjmKmteEnUJmRYucgUVxXUQy7gtenpLmw0
+    password="$6$rounds=656000$iO7Q9L6/w8dUUQVf$rmtnxrQ15TGAfG5ODxQ/WGyEpTwk.vD1W.UtedmOlo9YNkrIwapYMjmKmteEnUJmRYucgUVxXUQy7gtenpLmw0"
     update_password=on_create
   when: item.group is not defined
   with_items: {{ users }}
