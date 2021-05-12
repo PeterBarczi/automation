@@ -1,8 +1,9 @@
 --- # Req 30
 - name: Disable SELINUX
   shell: sed -i '/^SELINUX=permissive/s/.*/SELINUX=disabled/' /etc/sysconfig/selinux && touch /.autorelabel
+  register: selinux
   args:
     warn: false
   when: ansible_distribution == "RedHat"
-  failed_when: ( check_grub.rc not in [ 0, 1 ] )
+  failed_when: ( selinux.rc not in [ 0, 1 ] )
   
