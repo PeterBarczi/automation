@@ -50,7 +50,7 @@
   shell: sed -i '/GRUB_CMDLINE_LINUX=/s/"$/ audit=1"/' /etc/default/grub
   args:
     warn: false
-  changed_when: false
+#  changed_when: false
   when: check_grub.rc == 1
   register: grub
 
