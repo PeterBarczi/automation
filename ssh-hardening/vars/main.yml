@@ -3,11 +3,11 @@
 #
 
 # SSH
-allowgroups: SK001852 pety
+allowgroups: LinuxUsers
 allowusers: pety
 
 # Users to be deleted
-users_to_delete: pady
+users_to_delete: ec2-user
 
 # Hostname
 domain: bigdata.t-systems.com
@@ -30,7 +30,7 @@ ntpservers:
 # SSSD
 dc1: xhb
 dc2: app
-ldappassword: AAAQAM62kV1D2Z0XZxsYxmuYvZTSc/lhfZLSK0NmTWSA7HYgqH40tbOClOLrmhUCaqcD86Xh2dGALRO0qlxACT+AQb8AAQID
+ldappassword: AxAAQAM62kV1D2Z0XZxsYxmuYvZTSc/lhfZLSK0NmTWSA7HYgqH40tbOClOLrmhUCaqcD86Xh2dGALRO0qlxACT+AQb8AAQID
 ldap1: 5.198.214.12
 ldap2: 160.118.26.136
 ldap3: 5.198.215.12
