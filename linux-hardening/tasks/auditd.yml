@@ -35,3 +35,25 @@
     name: auditd
     state: started
     enabled: yes
+
+- name: Check if GRUB parameter for AUDITD is present
+  command: grep audit /etc/default/grub
+  register: check_grub
+  failed_when: ( check_grub.rc not in [ 0, 1 ] )
+  args:
+    warn: false
+  changed_when: false
+
+- debug: msg={{ check_grub.rc }}
+
+- name: Add GRUB parameter for AUDITD 
+  shell: sed -i '/GRUB_CMDLINE_LINUX=/s/"$/ audit=1"/' /etc/default/grub
+  args:
+    warn: false
+  changed_when: false
+  when: check_grub.rc == 1
+  register: grub
+
+- name: Generate new GRUB config
+  command: grub2-mkconfig
+  when: grub.changed
