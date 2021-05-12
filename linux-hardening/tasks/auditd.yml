@@ -55,5 +55,5 @@
   register: grub
 
 - name: Generate new GRUB config
-  command: grub2-mkconfig
+  command: grub2-mkconfig -o /boot/grub2/grub.cfg
   when: grub.changed

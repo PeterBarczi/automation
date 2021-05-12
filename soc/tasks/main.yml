@@ -1,4 +1,0 @@
----
-# ADD/REMOVE Local Users
- - name: Configure Local Users
-   include_tasks: users.yml
