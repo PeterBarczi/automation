@@ -1,4 +1,7 @@
 ---
+# Disable SELINUX
+ - name: Disable SELINUX
+   include_tasks: selinux.yml
 # Configure NTP via Chrony
  - name: Configure NTP
    include_tasks: ntp.yml
