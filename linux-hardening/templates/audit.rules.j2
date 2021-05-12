@@ -87,7 +87,7 @@
 -w /etc/group -p wa -k identity
 # Req 35: Configuration Change events must be logged.
 -w /var/log/audit/audit.log
--w /var/log/audit/audit\[1-4\].log
+-w /var/log/audit/audit.log.[1-4]
 -w /etc/rsyslog.conf
 -w /etc/rsyslog.d/conf
 -w /etc/audit/auditd.conf -p wa

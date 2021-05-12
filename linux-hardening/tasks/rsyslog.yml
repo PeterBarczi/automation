@@ -1,0 +1,29 @@
+--- # Req 38
+- name: Ensure that RSYSLOG is installed (RedHat)
+  yum:
+    name: rsyslog
+    state: installed
+  when: ansible_distribution == "RedHat"
+
+- name: Ensure that RSYSLOG is installed (SLES)
+  zypper:
+    name: rsyslog
+    state: installed
+  when: ansible_distribution == "Suse"
+
+- name: Deploy rsyslog.conf
+  copy:
+    src: "rsyslog.conf"
+    dest: "/etc/rsyslog.conf"
+    mode: 0640
+    owner: "root"
+    group: "root"
+  notify: restart rsyslog
+
+- meta: flush_handlers
+
+- name: Check status of RSYSLOGD
+  service:
+    name: rsyslog
+    state: started
+    enabled: yes

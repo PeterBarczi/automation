@@ -26,3 +26,6 @@
 # Configure Logrotate
  - name: Configure Logrotate
    include_tasks: logrotate.yml
+# Configure RSYSLOG
+- name: Configure RSYSLOG
+   include_tasks: rsyslog.yml
