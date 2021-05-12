@@ -14,7 +14,7 @@
   notify: restart sshd
 
 - name: Check Server Role
-  command: "grep -i 01 /etc/hostname"
+  command: "grep -i cds /etc/hostname"
   register: check_role
   failed_when: ( check_role.rc not in [ 0, 1 ] )
   changed_when: false
