@@ -1,0 +1,33 @@
+--- # Req 7
+- name: Check if cron.allow exists
+  stat:
+    path: "/etc/cron.allow"
+  register: stat_cron_allow
+
+- name: Create cron.allow file
+  file:
+    path: "/etc/cron.allow"
+    state: touch
+    mode: 0600
+    owner: root
+  when: not stat_cron_allow.stat.exists
+
+- name: Add allowed users to cron.allow 
+  copy:
+    dest: "/etc/cron.allow"
+    content: |
+             {{ item }}
+  with_items: "{{ cron_users }}"
+
+#- name: Check if cron.deny exists
+#  stat:
+#    path: "/etc/cron.deny"
+#  register: stat_cron_deny
+
+#- name: Create cron.deny file
+#  file:
+#    path: "/etc/cron.deny"
+#    state: touch
+#    mode: 0600
+#    owner: root
+#  when: not stat_cron_deny.stat.exists

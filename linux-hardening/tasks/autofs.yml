@@ -1,0 +1,17 @@
+--- # Req 6
+- name: Check if autofs is installed
+  command: rpm -q autofs
+  register: check_autofs
+  failed_when: ( check_autofs.rc not in [ 0, 1 ] )
+  args:
+    warn: false
+  changed_when: false
+
+- debug: msg={{ check_autofs.rc }}
+
+- name: Disable autofs
+  service:
+    name: autofs
+    state: stopped
+    enabled: no
+  when: check_autofs.rc == 0

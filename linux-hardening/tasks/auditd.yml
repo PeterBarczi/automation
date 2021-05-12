@@ -1,0 +1,37 @@
+--- # Req 30
+- name: Ensure that AUDIT is installed (RedHat)
+  yum:
+    name: audit
+    state: installed
+  when: ansible_distribution == "RedHat"
+
+- name: Ensure that AUDIT is installed (SLES)
+  zypper:
+    name: audit
+    state: installed
+  when: ansible_distribution == "Suse"
+
+- name: Configure AUDITD
+  copy:
+    src: "auditd.conf"
+    dest: "/etc/audit/auditd.conf"
+    mode: 0640
+    owner: "root"
+    group: "root"
+
+- name: Configure AUDITD rules
+  template:
+    src: "audit.rules.j2"
+    dest: "/etc/audit/rules.d/audit.rules"
+    mode: 0600
+    owner: "root"
+    group: "root"
+  notify: restart auditd
+
+- meta: flush_handlers
+
+- name: Check status of AUDITD
+  service:
+    name: auditd
+    state: started
+    enabled: yes

@@ -1,0 +1,28 @@
+---
+# Configure NTP via Chrony
+ - name: Configure NTP
+   include_tasks: ntp.yml
+# Disable IPv6
+ - name: Disable IPv6
+   include_tasks: disable_ipv6.yml
+# Hardening IPv4
+ - name: Hardening IPv4
+   include_tasks: hardening_ipv4.yml
+# Hardening Cron
+ - name: Hardening Cron
+   include_tasks: cron.yml
+# Hardening At
+ - name: Hardening at
+   include_tasks: at.yml
+# Disable autofs
+ - name: Disable autofs
+   include_tasks: autofs.yml
+# Set UMASK
+ - name: Set UMASK
+   include_tasks: umask.yml
+# Configure AUDITD
+ - name: Configure AUDITD
+   include_tasks: auditd.yml
+# Configure Logrotate
+ - name: Configure Logrotate
+   include_tasks: logrotate.yml

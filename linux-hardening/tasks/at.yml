@@ -1,0 +1,33 @@
+--- # Req 7
+- name: Check if at.allow exists
+  stat:
+    path: "/etc/at.allow"
+  register: stat_at_allow
+
+- name: Create at.allow file
+  file:
+    path: "/etc/at.allow"
+    state: touch
+    mode: 0600
+    owner: root
+  when: not stat_at_allow.stat.exists
+
+- name: Add allowed users to at.allow
+  copy:
+    dest: "/etc/at.allow"
+    content: |
+             {{ item }}
+  with_items: "{{ cron_users }}"
+
+#- name: Check if at.deny exists
+#  stat:
+#    path: "/etc/at.deny"
+#  register: stat_at_deny
+
+#- name: Create at.deny file
+#  file:
+#    path: "/etc/at.deny"
+#    state: touch
+#    mode: 0600
+#    owner: root
+#  when: not stat_at_deny.stat.exists

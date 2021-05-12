@@ -1,0 +1,7 @@
+---
+# Configure SSH
+ - name: Configure SSH
+   include_tasks: SSH.yml
+# Remove Users
+ - name: Remove not needed Users
+   include_tasks: users.yml

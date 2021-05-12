@@ -1,0 +1,6 @@
+--- # Req 11
+- name: Set UMASK
+  shell: sed -i '/^UMASK/s/.*/UMASK 027/' /etc/login.defs
+  args:
+    warn: false
+  changed_when: false

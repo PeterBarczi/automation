@@ -1,0 +1,57 @@
+--- # Req 30
+- name: Ensure that CHRONYD is installed (RedHat)
+  yum:
+    name: chrony
+    state: installed
+  when: ansible_distribution == "RedHat"
+
+- name: Ensure that CHRONYD is installed (SLES)
+  zypper:
+    name: chrony
+    state: installed
+  when: ansible_distribution == "Suse"
+
+- name: Configure CHRONYD
+  template:
+    src: chrony.conf.j2
+    dest: /etc/chrony.conf
+    mode: 0644
+    owner: "root"
+    group: "root"
+  notify: restart chronyd
+
+- meta: flush_handlers
+
+- name: Check if NTPD is installed
+  command: rpm -q ntp
+  register: check_ntpd
+  failed_when: ( check_ntpd.rc not in [ 0, 1 ] )
+  args:
+    warn: false
+  changed_when: false
+
+- name: Check status of CHRONYD
+  service:
+    name: chronyd
+    state: started
+    enabled: yes
+
+- name: Disable NTPD 
+  service:
+    name: ntpd
+    state: stopped
+    enabled: no
+  when: check_ntpd.rc == 0 
+
+- name: Check current Timezone 
+  command: "echo $(timedatectl | grep zone | awk {'print $3'})"
+  register: check_timezone
+  changed_when: false
+
+- name: Set Timezone
+  command: "timedatectl set-timezone {{ timezone }}"
+#  when: check_timezone.stdout != "{{ timezone }}"
+  when: check_timezone.stdout !=  timezone 
+  args:
+    warn: false
+  changed_when: false

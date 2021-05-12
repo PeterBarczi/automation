@@ -1,0 +1,13 @@
+--- # Req 16
+- name: Disable IPv6
+  blockinfile:
+    path: /etc/sysctl.d/disable_ipv6.conf
+    block: |
+      net.ipv6.conf.all.disable_ipv6 = 1
+      net.ipv6.conf.default.disable_ipv6 = 1
+    create: yes
+    backup: no
+
+- name: Activate IPv6 config
+  command: "sysctl --system"
+  changed_when: false

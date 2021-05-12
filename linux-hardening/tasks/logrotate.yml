@@ -1,0 +1,8 @@
+--- # Req 29
+- name: Deploy logrotate conf
+  copy:
+    src: "logrotate.conf"
+    dest: "/etc/logrotate.conf"
+    mode: 0644
+    owner: "root"
+    group: "root"

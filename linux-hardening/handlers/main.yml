@@ -1,0 +1,16 @@
+---
+# CHRONYD
+- name: restart chronyd
+  service:
+    name: chronyd
+    state: restarted
+# SSHD
+- name: restart sshd
+  service:
+    name: sshd
+    state: restarted
+# AUDITD
+- name: restart auditd
+  command: "service auditd restart"
+  args:
+    warn: false

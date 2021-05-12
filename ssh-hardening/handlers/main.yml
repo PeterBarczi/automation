@@ -1,0 +1,11 @@
+---
+# NTPD
+- name: restart ntpd
+  service:
+    name: ntpd
+    state: restarted
+# SSHD
+- name: restart sshd
+  service:
+    name: sshd
+    state: restarted
