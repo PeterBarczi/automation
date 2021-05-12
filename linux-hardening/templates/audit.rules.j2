@@ -38,19 +38,13 @@
 -a always,exit -F arch=b64 -S init_module,delete_module -F key=modules
 -w /usr/bin/rpm -p x -k software_mgmt
 -w /usr/bin/yum -p x -k software_mgmt
--w /usr/bin/rpm -p x -k software_mgmt
--w /usr/bin/zypper -p x -k software_mgmt
--w /usr/bin/dpkg -p x -k software_mgmt
--w /usr/bin/apt-add-repository -p x -k software_mgmt
--w /usr/bin/apt-get -p x -k software_mgmt
--w /usr/bin/aptitude -p x -k software_mgmt
 # Req 33: Access and Authentication events must be logged.
 -w /var/log/lastlog -p wa -k logins
 -w /etc/shadow -p wa -k identity
 -w /etc/gshadow -p wa -k identity
 -w /etc/security/opasswd -p wa -k identity
 -w /etc/sudoers -p wa -k scope
--w /etc/sudoers.d # -p wa -k scope (problem with Ubuntu 16.04)
+-w /etc/sudoers.d -p wa -k scope
 -w /var/log/sudo.log -p wa -k actions
 -a always,exit -F arch=b64 -S chmod,fchmod,fchmodat -F auid>=1000 -F auid!=-1 -F key=perm_mod
 -a always,exit -F arch=b64 -S chown,fchown,lchown,fchownat -F auid>=1000 -F auid!=-1 -F key=perm_mod
@@ -58,19 +52,13 @@
 -w /var/run/faillock/ -p wa -k logins
 -w /etc/selinux/ -p wa -k MAC-policy
 -w /var/log/faillog -p wa -k logins
--w /etc/apparmor/ -p wa -k MAC-policy
--w /etc/apparmor.d/ -p wa -k MAC-policy
--w /var/log/faillog -p wa -k logins
 -w /var/log/tallylog -p wa -k logins
--w /etc/apparmor/ -p wa -k MAC-policy
--w /etc/apparmor.d/ -p wa -k MAC-policy
 # Req 34: Account and Group Management events must be logged.
 -w /etc/passwd -p wa -k identity
 -w /etc/group -p wa -k identity
 # Req 35: Configuration Change events must be logged.
 -w /var/log/audit/audit.log
 -w /var/log/audit/audit\[1-4\].log
--w /etc/syslog
 -w /etc/rsyslog.conf
 -w /etc/rsyslog.d/conf
 -w /etc/audit/auditd.conf -p wa
@@ -92,9 +80,5 @@
 -w /var/log/messages
 -w /etc/sysconfig/network -p wa -k system-locale
 -w /etc/sysconfig/network-scripts -p wa -k system-locale
--w /var/log/messages
--w /etc/sysconfig/network -p wa -k system-locale
--w /etc/sysconfig/network-scripts -p wa -k system-locale
 -w /var/log/auth.log
 -w /var/log/system.log
--w /etc/network/interfaces -p wa -k system-locale
