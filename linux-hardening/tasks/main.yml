@@ -35,3 +35,12 @@
 # Disable Core Dumps
  - name: Disable Core Dumps
    include_tasks: core_dump.yml
+# Download Checks from github
+ - name: Download checks from github
+   include_tasks: download_checks.yml
+# Remove unnecessary SUIDs
+ - name: Remove unnecessary SUIDs
+   include_tasks: suid.yml
+# Last Step
+ - name: Finish
+   include_tasks: finish.yml

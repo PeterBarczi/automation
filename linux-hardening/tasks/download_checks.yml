@@ -1,0 +1,5 @@
+# Download Checks from github
+- name: Download Checks from github
+  git:
+    repo: https://github.com/telekom/tel-it-security-automation.git
+    dest: /var/tmp/tel-it-security-automation

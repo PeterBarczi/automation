@@ -1,0 +1,6 @@
+# Last step.
+- name: Finish.
+  copy:
+    dest: "/.tsy-info"
+    content: |
+      Hardening done on {{ ansible_date_time.date }}.
