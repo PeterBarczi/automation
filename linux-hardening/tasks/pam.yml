@@ -1,0 +1,50 @@
+--- # Req 45,46,47
+- name: Deploy pwquality.conf
+  copy:
+    src: "pwquality.conf"
+    dest: "/etc/security/pwquality.conf"
+    mode: 0644
+    owner: "root"
+    group: "root"
+
+- name: Set PAM PASS_MIN_DAYS parameter
+  shell: sed -i '/^PASS_MIN_DAYS/s/.*/PASS_MIN_DAYS   1/' /etc/login.defs
+  args:
+    warn: false
+  changed_when: false
+
+- name: Set PAM parameters 1/6
+  shell: sed -i '/ sha512 / s/$/ rounds=640000 remember=60/'  /etc/pam.d/system-auth
+  args:
+    warn: false
+  changed_when: false
+
+- name: Set PAM parameters 2/6
+  shell: sed -i '/ pam_pwquality.so / s/$/ remember=60/'  /etc/pam.d/system-auth
+  args:
+    warn: false
+  changed_when: false
+
+- name: Set PAM parameters 3/6
+  shell: sed -i '/ sha512 / s/$/ rounds=640000 remember=60/'  /etc/pam.d/password-auth
+  args:
+    warn: false
+  changed_when: false
+
+- name: Set PAM parameters 4/6
+  shell: sed -i '/ pam_pwquality.so / s/$/ remember=60/'  /etc/pam.d/password-auth
+  args:
+    warn: false
+  changed_when: false
+
+- name: Set PAM parameters 5/6
+  shell: sed -i '/pam_env.so/i auth        required      pam_tally2.so deny=5 unlock_time=600' /etc/pam.d/system-auth
+  args:
+    warn: false
+  changed_when: false
+
+- name: Set PAM parameters 6/6
+  shell: sed -i '/pam_env.so/i auth        required      pam_tally2.so deny=5 unlock_time=600' /etc/pam.d/password-auth
+  args:
+    warn: false
+  changed_when: false
