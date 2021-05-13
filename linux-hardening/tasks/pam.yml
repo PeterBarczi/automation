@@ -7,11 +7,22 @@
     owner: "root"
     group: "root"
 
-- name: Set PAM PASS_MIN_DAYS parameter
+- name: Set PASS_MIN_DAYS parameter
   shell: sed -i '/^PASS_MIN_DAYS/s/.*/PASS_MIN_DAYS   1/' /etc/login.defs
   args:
     warn: false
   changed_when: false
+
+- name: Set MIN and MAX encryption rounds parameters
+  blockinfile:
+    path: /etc/login.defs
+    block: |
+      #
+      # SOC Req 10
+      SHA_CRYPT_MIN_ROUNDS 640000
+      SHA_CRYPT_MAX_ROUNDS 640000
+    create: no
+    backup: no
 
 - name: Set PAM parameters 1/6
   shell: sed -i '/ sha512 / s/$/ rounds=640000 remember=60/'  /etc/pam.d/system-auth
