@@ -1,0 +1,11 @@
+--- # Req 13
+- name: Disable Core Dumps
+  blockinfile:
+    path: /etc/security/limits.conf
+    block: |
+      #
+      # SOC Req 13
+      * hard core 0
+      * soft core 0
+    create: no
+    backup: no

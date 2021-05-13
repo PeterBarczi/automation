@@ -1,39 +1,13 @@
 ---
-# Variables
+# Variables for ssh-hardening PLAY
 #
 
 # SSH
-allowgroups: LinuxUsers
+allowgroups: LinuxUsers pety
 allowusers: pety
 
 # Users to be deleted
 users_to_delete: ec2-user
-
-# Hostname
-domain: bigdata.t-systems.com
-
-# resolv.conf
-nameservers:
- - 10.199.133.102
- - 10.199.134.102
-domains: bigdata.t-systems.com
-options:
- - attempts:5
- - timeout:2
-
-# NTPD
-ntpservers:
- - 164.26.201.76
- - 164.29.207.124
- - 164.20.27.92
-
-# SSSD
-dc1: xhb
-dc2: app
-ldappassword: AxAAQAM62kV1D2Z0XZxsYxmuYvZTSc/lhfZLSK0NmTWSA7HYgqH40tbOClOLrmhUCaqcD86Xh2dGALRO0qlxACT+AQb8AAQID
-ldap1: 5.198.214.12
-ldap2: 160.118.26.136
-ldap3: 5.198.215.12
 
 # pbarczi stuff
 user: pbarczi

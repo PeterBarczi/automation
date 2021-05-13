@@ -9,8 +9,8 @@
  - name: Disable IPv6
    include_tasks: disable_ipv6.yml
 # Hardening IPv4
- - name: Hardening IPv4
-   include_tasks: hardening_ipv4.yml
+ - name: Set sysctl parameters 
+   include_tasks: sysctl.yml
 # Hardening Cron
  - name: Hardening Cron
    include_tasks: cron.yml
@@ -32,3 +32,6 @@
 # Configure RSYSLOG
  - name: Configure RSYSLOG
    include_tasks: rsyslog.yml
+# Disable Core Dumps
+ - name: Disable Core Dumps
+   include_tasks: core_dump.yml
