@@ -7,7 +7,7 @@
     warn: false
   changed_when: false
 
-- debug: msg={{ check_autofs.rc }}
+#- debug: msg={{ check_autofs.rc }}
 
 - name: Disable autofs
   service:

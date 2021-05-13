@@ -44,7 +44,7 @@
     warn: false
   changed_when: false
 
-- debug: msg={{ check_grub.rc }}
+#- debug: msg={{ check_grub.rc }}
 
 - name: Add GRUB parameter for AUDITD 
   shell: sed -i '/GRUB_CMDLINE_LINUX=/s/"$/ audit=1"/' /etc/default/grub
