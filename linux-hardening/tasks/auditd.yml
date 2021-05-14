@@ -28,6 +28,12 @@
     group: "root"
   notify: restart auditd
 
+- name: Change parameter for SLES
+  shell: sed -i 's/yum/zypper/' /etc/audit/rules.d/audit.rules
+  args:
+    warn: false
+  when: ansible_distribution == "Suse" 
+
 - meta: flush_handlers
 
 - name: Check status of AUDITD
