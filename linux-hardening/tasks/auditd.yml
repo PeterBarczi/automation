@@ -19,22 +19,33 @@
     owner: "root"
     group: "root"
 
-- name: Configure AUDITD rules
+- name: Configure AUDITD rules (RHEL)
   template:
-    src: "audit.rules.j2"
+    src: "audit.rules_rhel.j2"
     dest: "/etc/audit/rules.d/audit.rules"
     mode: 0600
     owner: "root"
     group: "root"
   notify: restart auditd
+  when: ansible_distribution == "RedHat"
 
-- name: Change parameter for SLES
-  shell: sed -i 's/yum/zypper/' /etc/audit/rules.d/audit.rules
-  args:
-    warn: false
-  when: ansible_distribution == "SLES" 
+- name: Configure AUDITD rules (SLES)
+  template:
+    src: "audit.rules_sles.j2"
+    dest: "/etc/audit/rules.d/audit.rules"
+    mode: 0600
+    owner: "root"
+    group: "root"
+  notify: restart auditd
+  when: ansible_distribution == "SLES"
 
 - meta: flush_handlers
+
+#- name: Change parameter for SLES
+#  shell: sed -i 's/yum/zypper/' /etc/audit/rules.d/audit.rules
+#  args:
+#    warn: false
+#  when: ansible_distribution == "SLES" 
 
 - name: Check status of AUDITD
   service:
