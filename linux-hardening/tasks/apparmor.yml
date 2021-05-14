@@ -1,0 +1,15 @@
+--- # Req 
+- name: Check if Apparmor is installed
+  command: rpm -q apparmor-
+  register: check_apparmor
+  failed_when: ( check_apparmor.rc not in [ 0, 1 ] )
+  args:
+    warn: false
+  changed_when: false
+
+- name: Disable Apparmor
+  service:
+    name: apparmor
+    state: stopped
+    enabled: no
+  when: check_apparmor.rc == 0
