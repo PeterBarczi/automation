@@ -9,7 +9,7 @@
   zypper:
     name: chrony
     state: installed
-  when: ansible_distribution == "Suse"
+  when: ansible_distribution == "SLES"
 
 - name: Configure CHRONYD
   template:

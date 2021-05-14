@@ -9,7 +9,7 @@
   zypper:
     name: audit
     state: installed
-  when: ansible_distribution == "Suse"
+  when: ansible_distribution == "SLES"
 
 - name: Configure AUDITD
   copy:
@@ -32,7 +32,7 @@
   shell: sed -i 's/yum/zypper/' /etc/audit/rules.d/audit.rules
   args:
     warn: false
-  when: ansible_distribution == "Suse" 
+  when: ansible_distribution == "SLES" 
 
 - meta: flush_handlers
 

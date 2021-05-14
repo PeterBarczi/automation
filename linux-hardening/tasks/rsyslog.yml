@@ -9,7 +9,7 @@
   zypper:
     name: rsyslog
     state: installed
-  when: ansible_distribution == "Suse"
+  when: ansible_distribution == "SLES"
 
 - name: Deploy rsyslog.conf
   copy:

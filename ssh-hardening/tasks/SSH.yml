@@ -9,7 +9,7 @@
   zypper:
     name: openssh-server
     state: installed
-  when: ansible_distribution == "Suse"
+  when: ansible_distribution == "SLES"
 
 - name: Deploy SSHD config
   template:

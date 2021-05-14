@@ -9,4 +9,17 @@
   zypper: name={{ item }} state=present
   loop:
     - git
-  when: ansible_distribution == "Suse"
+  when: ansible_distribution == "SLES"
+
+# Remove unnecessary Packages
+- name: Remove unnecessary Packages (RedHat)
+  yum: name={{ item }} state=absent
+  loop:
+    - telnet
+  when: ansible_distribution == "RedHat"
+
+- name: Remove unnecessary Packages (SLES)
+  zypper: name={{ item }} state=absent
+  loop:
+    - telnet
+  when: ansible_distribution == "SLES"
