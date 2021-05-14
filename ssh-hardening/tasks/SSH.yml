@@ -7,7 +7,7 @@
 
 - name: Ensure that SSHD is installed (SLES)
   zypper:
-    name: openssh-server
+    name: openssh
     state: installed
   when: ansible_distribution == "SLES"
 
