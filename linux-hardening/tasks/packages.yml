@@ -1,5 +1,12 @@
-- name: install kerberos
+--- # Install additional Packages
+- name: Install additional Packages (RedHat)
   yum: name={{ item }} state=present
-  with_items:
-    - krb5-server
-    - krb5-libs
+  loop:
+    - git
+  when: ansible_distribution == "RedHat"
+
+- name: Install additional Packages (SLES)
+  zypper: name={{ item }} state=present
+  loop:
+    - git
+  when: ansible_distribution == "Suse"
