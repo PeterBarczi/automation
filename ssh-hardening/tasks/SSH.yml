@@ -1,8 +1,15 @@
 ---
-- name: Ensure that SSHD is installed
+- name: Ensure that SSHD is installed (RedHat)
   yum:
     name: openssh-server
     state: installed
+  when: ansible_distribution == "RedHat"
+
+- name: Ensure that SSHD is installed (SLES)
+  zypper:
+    name: openssh-server
+    state: installed
+  when: ansible_distribution == "Suse"
 
 - name: Deploy SSHD config
   template:
