@@ -19,15 +19,13 @@
              {{ item }}
   with_items: "{{ cron_users }}"
 
-#- name: Check if cron.deny exists
-#  stat:
-#    path: "/etc/cron.deny"
-#  register: stat_cron_deny
+- name: Check if cron.deny exists
+  stat:
+    path: "/etc/cron.deny"
+  register: stat_cron_deny
 
-#- name: Create cron.deny file
-#  file:
-#    path: "/etc/cron.deny"
-#    state: touch
-#    mode: 0600
-#    owner: root
-#  when: not stat_cron_deny.stat.exists
+- name: Remove cron.deny file
+  file:
+    path: "/etc/cron.deny"
+    state: absent
+  when: stat_cron_deny.stat.exists
