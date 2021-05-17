@@ -18,6 +18,7 @@
     mode: 0600
     owner: "root"
     group: "root"
+    backup: yes
   notify: restart sshd
 
 - name: Check Server Role
