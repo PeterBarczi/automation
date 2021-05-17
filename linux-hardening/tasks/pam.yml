@@ -7,13 +7,13 @@
     owner: "root"
     group: "root"
 
-- name: Set PASS_MIN_DAYS parameter
+- name: Set PASS_MIN_DAYS parameter in login.defs
   shell: sed -i '/^PASS_MIN_DAYS/s/.*/PASS_MIN_DAYS   1/' /etc/login.defs
   args:
     warn: false
   changed_when: false
 
-- name: Set MIN and MAX encryption rounds parameters
+- name: Set MIN and MAX encryption rounds parameters in login.defs
   blockinfile:
     path: /etc/login.defs
     block: |
@@ -24,50 +24,28 @@
     create: no
     backup: no
 
-- name: Set PAM parameters 1/8
-  shell: sed -i '/ sha512 / s/$/ rounds=640000 remember=60/'  /etc/pam.d/system-auth
-  args:
-    warn: false
-  changed_when: false
+- name: Deploy PAM files (RHEL)
+  copy:
+    src: "pam/system-password-auth"
+    dest: "{{ item }}"
+    mode: 0644
+    owner: "root"
+    group: "root"  
+  with_items:
+    - /etc/pam.d/system-auth
+    - /etc/pam.d/password-auth 
+  when: ansible_distribution == "RedHat"
 
-- name: Set PAM parameters 2/8
-  shell: sed -i '/ pam_pwquality.so / s/$/ remember=60/'  /etc/pam.d/system-auth
-  args:
-    warn: false
-  changed_when: false
-
-- name: Set PAM parameters 3/8
-  shell: sed -i '/ sha512 / s/$/ rounds=640000 remember=60/'  /etc/pam.d/password-auth
-  args:
-    warn: false
-  changed_when: false
-
-- name: Set PAM parameters 4/8
-  shell: sed -i '/ pam_pwquality.so / s/$/ remember=60/'  /etc/pam.d/password-auth
-  args:
-    warn: false
-  changed_when: false
-
-- name: Set PAM parameters 5/8
-  shell: sed -i '/pam_env.so/i auth        required      pam_tally2.so onerr=fail deny=5 unlock_time=600' /etc/pam.d/system-auth
-  args:
-    warn: false
-  changed_when: false
-
-- name: Set PAM parameters 6/8
-  shell: sed -i '/pam_env.so/i auth        required      pam_tally2.so onerr=fail deny=5 unlock_time=600' /etc/pam.d/password-auth
-  args:
-    warn: false
-  changed_when: false
-
-- name: Set PAM parameters 7/8
-  shell: sed -i '/pam_localuser.so/i account     required      pam_tally2.so' /etc/pam.d/system-auth
-  args:
-    warn: false
-  changed_when: false
-
-- name: Set PAM parameters 8/8
-  shell: sed -i '/pam_localuser.so/i account     required      pam_tally2.so' /etc/pam.d/password-auth
-  args:
-    warn: false
-  changed_when: false
+- name: Deploy PAM files (SLES)
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dst }}"
+    mode: 0644
+    owner: "root"
+    group: "root"
+  with_items:
+    - { src: 'common-account-pc', dest: '/etc/pam.d/common-account-pc' }
+    - { src: 'common-auth-pc', dest: '/etc/pam.d/common-auth-pc' }
+    - { src: 'common-password-pc', dest: '/etc/pam.d/common-password-pc' }
+    - { src: 'common-session-pc', dest: '/etc/pam.d/common-session-pc' }
+  when: ansible_distribution == "SLES"
