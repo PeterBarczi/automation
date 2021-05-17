@@ -2,3 +2,4 @@
 - name: Disable SELINUX
   selinux:
     state: disabled
+  when: ansible_distribution == "RedHat"
