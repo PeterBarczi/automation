@@ -1,0 +1,7 @@
+---
+- name: Linux Hardening (SOC)
+  hosts: localhost
+  become: true
+  become_method: sudo
+  roles:
+    - linux-hardening

@@ -38,14 +38,14 @@
 
 - name: Deploy PAM files (SLES)
   copy:
-    src: "{{ item.src }}"
-    dest: "{{ item.dst }}"
+    src: "{{ item }}"
+    dest: "/etc/pam.d/"
     mode: 0644
     owner: "root"
     group: "root"
   with_items:
-    - { src: 'common-account-pc', dest: '/etc/pam.d/common-account-pc' }
-    - { src: 'common-auth-pc', dest: '/etc/pam.d/common-auth-pc' }
-    - { src: 'common-password-pc', dest: '/etc/pam.d/common-password-pc' }
-    - { src: 'common-session-pc', dest: '/etc/pam.d/common-session-pc' }
+    - pam/common-account-pc
+    - pam/common-auth-pc
+    - pam/common-password-pc
+    - pam/common-session-pc
   when: ansible_distribution == "SLES"

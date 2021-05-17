@@ -1,0 +1,7 @@
+---
+- name: Linux SSH Hardening (SOC)
+  hosts: localhost
+  become: true
+  become_method: sudo
+  roles:
+    - ssh-hardening 
