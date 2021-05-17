@@ -11,5 +11,4 @@
     path: "/home/ssm-user"
     mode: 0640
     owner: ssm-user
-    group: ssm-user
     state: directory
