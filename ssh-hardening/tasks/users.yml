@@ -9,6 +9,6 @@
 - name: Set permissions for ssm-user's home dir
   file:
     path: "/home/ssm-user"
-    mode: 0640
+    mode: 0700
     owner: ssm-user
     state: directory
