@@ -1,22 +1,25 @@
-# inside .github/workflows/your-action.yml
-name: Add File to Bucket
-on: push
+name: Publish
+
+on:
+  push:
+    branches:
+    - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    
     steps:
-   - uses: actions/checkout@master
-   
-   - name: Upload file to bucket
-   uses: zdurham/s3-upload-github-action@master
-   with:
-     args: --acl public-read
-   env:
-    FILE: ./all.yml
-    AWS_REGION: 'us-east-1'
-    AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
-    #S3_KEY: ${{ secrets.S3_KEY }}
-    AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-    AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    - uses: actions/checkout@v2
+    - uses: ThiagoAnunciacao/s3cmd-sync-action@v0.2.5
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+        AWS_REGION: 'us-central-1'     # optional: defaults to us-east-1
+        S3CMD_SOURCE_DIR: 'all.yml'           # optional: defaults ./ to entire repository
+        S3CMD_EXCLUDE: '.git/*'        # optional: defaults empty
+        S3CMD_EXCLUDE_FROM: ''         # optional: defaults empty
+        S3CMD_DELETE_REMOVED: 'true'   # optional: default true
+        S3CMD_ADD_HEADERS: ''          # optional: defaults empty
+        S3CMD_CF_INVALIDATE: 'true'    # optional: default true
+        S3CMD_EXTRA_OPTS: '--verbose'  # optional: default --verbose
