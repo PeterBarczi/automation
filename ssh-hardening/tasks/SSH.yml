@@ -19,6 +19,7 @@
     owner: "root"
     group: "root"
     backup: yes
+#   validate: "httpd -t -f %s" 
   notify: restart sshd
 
 - name: Check Server Role
