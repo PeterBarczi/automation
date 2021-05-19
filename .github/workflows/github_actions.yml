@@ -17,7 +17,7 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
         AWS_REGION: 'us-central-1'     # optional: defaults to us-east-1
-        S3CMD_SOURCE_DIR: 'all.yml'           # optional: defaults ./ to entire repository
+        S3CMD_SOURCE_DIR: 'testing'           # optional: defaults ./ to entire repository
         S3CMD_EXCLUDE: '.git/*'        # optional: defaults empty
         S3CMD_EXCLUDE_FROM: ''         # optional: defaults empty
         S3CMD_DELETE_REMOVED: 'true'   # optional: default true
