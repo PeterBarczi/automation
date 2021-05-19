@@ -5,9 +5,10 @@ on: push
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    
+
     steps:
-   - uses: actions/checkout@master
+    - uses: actions/checkout@v2
+    - run: touch test > all.yml
    
    - name: Upload file to bucket
    uses: zdurham/s3-upload-github-action@master
