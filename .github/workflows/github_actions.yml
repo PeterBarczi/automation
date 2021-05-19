@@ -6,9 +6,9 @@ jobs:
   DownloadFileAndUploadToS3:
     runs-on: ubuntu-latest
     steps:
-     - uses: actions/checkout@v1
-     - run: |
-        echo "Going to download a .zip file of repo...."
-        wget https://github.com/PeterBarczi/automation/archive/refs/heads/main.zip
-        echo "File Downloaded?"
-     - run: echo "One last message "
+      - uses: actions/checkout@v1
+      - run: |
+          echo "Going to download a .zip file of repo...."
+          wget https://github.com/PeterBarczi/automation/archive/refs/heads/main.zip
+          echo "File Downloaded?"
+      - run: echo "One last message "
