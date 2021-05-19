@@ -231,7 +231,7 @@ LOG_ROTATE_COUNT="4"
 LOG_ROTATE_MAXSIZE="10M"
 
 # Req 30: System time must be synchronized against a reference time source.
-if [ ! "$TIMEZONE" ]; then TIMEZONE="Europe/Berlin"; fi   # default
+if [ ! "$TIMEZONE" ]; then TIMEZONE="UTC"; fi   # default
 NTP_SOFTWARE="chrony ntp"
 
 # Req 31: Auditd service must be used to log security relevant events. 
