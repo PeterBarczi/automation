@@ -3,7 +3,7 @@
 #
 
 # SSH
-allowgroups: LinuxUsers pety
+allowgroups: LinuxUsers
 allowusers: pety
 
 # Users to be deleted
