@@ -12,6 +12,4 @@ jobs:
           wget https://github.com/PeterBarczi/automation/archive/refs/heads/main.zip
           echo "File Downloaded?"
       - run: echo "One last message "
-      
-      name: Upload to S3
       - uses: medlypharmacy/s3-artifacts-action@master
