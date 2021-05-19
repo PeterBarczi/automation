@@ -8,12 +8,13 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      name: test
     - run: touch test > all.yml
    
-   - name: Upload file to bucket
-   uses: zdurham/s3-upload-github-action@master
-   with:
-     args: --acl public-read
+    - uses: zdurham/s3-upload-github-action@master
+      name: Upload to S3
+      with:
+        args: --acl public-read
    env:
     FILE: ./all.yml
     AWS_REGION: 'us-east-1'
