@@ -39,8 +39,8 @@
  - name: Disable Core Dumps
    include_tasks: core_dump.yml
 # Download Checks from github
- - name: Download checks from github
-   include_tasks: download_checks.yml
+# - name: Download checks from github
+#   include_tasks: download_checks.yml
 # Disable Apparmor
  - name: Disable Apparmor
    include_tasks: apparmor.yml
