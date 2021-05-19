@@ -1,0 +1,838 @@
+
+-------------------------------------------------------------------------------
+ Telekom IT/DevSecOps - Compliance Check for Linux based systems
+-------------------------------------------------------------------------------
+   Host: test01
+   Date: 19.05.2021
+   OS: Red Hat Enterprise Linux Server
+   Version: 7.9 (Maipo)
+-------------------------------------------------------------------------------
+
+[Pre-Check] Check if running Linux version is supported:[1;32m PASSED[0m
+[Pre-Check] Check if script is started with root priviledges:[1;32m PASSED[0m
+[Pre-Check] Write log data to test-log-rhel7.9-(2021-19-05).log:[1;32m PASSED[0m
+[Pre-Check] Check if IPv6 is active on system:[1;32m PASSED[0m
+	[33mNOTE![0m IPv6 is disabled on the system.
+[Pre-Check] Load test cases from file /var/tmp/tel-it-security-automation_pety/testing/test_linux.sh:[1;32m PASSED[0m
+[Pre-Check] Write SoC for PSA to soc-linux-rhel7.9-(2021-19-05).csv:[1;32m PASSED[0m
+[Pre-Check] Read variables from file vars_custom_linux.sh:[1;32m PASSED[0m
+
+===============================================================================
+ Compliance Checks - Linux OS for Servers (3.65)
+===============================================================================
+Start testing ...
+
+++ Req 1: Unused services and protocols must be deactivated.
+   [Test 1.01] Check open tcp port 22 (port defined as allowed):[1;32m PASSED[0m
+   [Test 2.01] Check open udp port 68 (user defined allowed port):[1;32m PASSED[0m
+
+++ Req 2: The reachability of services must be restricted.
+   [Test 1.01] Check firewall solution (iptables):[1;32m PASSED[0m
+   [Test 2.02] Check if iptable tools installed:[1;31m FAILED[0m (not present)
+
+++ Req 3: Unused software must not be installed or must be uninstalled.
+   [Test 1.01] Check unused server (openbsd-inetd):[1;32m PASSED[0m
+   [Test 1.02] Check unused server (inetutils-inetd):[1;32m PASSED[0m
+   [Test 1.03] Check unused server (xinetd):[1;32m PASSED[0m
+   [Test 1.04] Check unused server (xserver-xorg-core):[1;32m PASSED[0m
+   [Test 1.05] Check unused server (vsftpd):[1;32m PASSED[0m
+   [Test 1.06] Check unused server (nfs-kernel-server):[1;32m PASSED[0m
+   [Test 1.07] Check unused server (ftpd):[1;32m PASSED[0m
+   [Test 1.08] Check unused server (dovecot-core):[1;32m PASSED[0m
+   [Test 1.09] Check unused server (dovecot-pop3d):[1;32m PASSED[0m
+   [Test 1.10] Check unused server (dovecot-imapd):[1;32m PASSED[0m
+   [Test 1.11] Check unused server (nis):[1;32m PASSED[0m
+   [Test 1.12] Check unused server (isc-dhcp-server):[1;32m PASSED[0m
+   [Test 1.13] Check unused server (avahi-daemon):[1;32m PASSED[0m
+   [Test 1.14] Check unused server (snmpd):[1;32m PASSED[0m
+   [Test 1.15] Check unused server (avahi):[1;32m PASSED[0m
+   [Test 1.16] Check unused server (telnet-server):[1;32m PASSED[0m
+   [Test 1.17] Check unused server (talk-server):[1;32m PASSED[0m
+   [Test 1.18] Check unused server (tftp-server):[1;32m PASSED[0m
+   [Test 1.19] Check unused server (rsh-server):[1;32m PASSED[0m
+   [Test 1.20] Check unused server (yp-tools):[1;32m PASSED[0m
+   [Test 1.21] Check unused server (inetd):[1;32m PASSED[0m
+   [Test 1.22] Check unused server (atftp):[1;32m PASSED[0m
+   [Test 1.23] Check unused server (yast2-tftp-server):[1;32m PASSED[0m
+   [Test 1.24] Check unused server (avahi-dnsconfd):[1;32m PASSED[0m
+   [Test 1.25] Check unused server (rsh-server):[1;32m PASSED[0m
+   [Test 1.26] Check unused server (inetutils-telnetd):[1;32m PASSED[0m
+   [Test 1.27] Check unused server (friendly-recovery):[1;32m PASSED[0m
+   [Test 1.28] Check unused server (avahi-dnsconfd):[1;32m PASSED[0m
+   [Test 1.29] Check unused server (avahi-ui-utils):[1;32m PASSED[0m
+   [Test 1.30] Check unused server (tftpd-hpa):[1;32m PASSED[0m
+   [Test 1.31] Check unused server (iscsi.service):[1;32m PASSED[0m
+   [Test 2.01] Check unused client (rsh-redone-client):[1;32m PASSED[0m
+   [Test 2.02] Check unused client (rsh-client):[1;32m PASSED[0m
+   [Test 2.03] Check unused client (talk):[1;32m PASSED[0m
+   [Test 2.04] Check unused client (telnet):[1;32m PASSED[0m
+   [Test 2.05] Check unused client (ldap-utilsi):[1;32m PASSED[0m
+   [Test 2.06] Check unused client (inetutils-telnet):[1;32m PASSED[0m
+   [Test 2.07] Check unused client (rsh):[1;32m PASSED[0m
+   [Test 2.08] Check unused client (ypbind):[1;32m PASSED[0m
+
+++ Req 4: Dedicated partitions must be used for growing content that can
+   influence the availability of the system.
+   [Test -.--] Checks for requirement 4 disabled: SKIPPED (N/A)
+
+++ Req 5: Parameters nodev, nosuid and noexec must be set for partitions
+   where this is applicable.
+   [Test -.--] Checks for requirement 5 disabled: SKIPPED (N/A)
+
+++ Req 6: Automounting must be disabled.
+   [Test 1.01] Check if autofs is installed:[1;32m PASSED[0m
+
+++ Req 7: The use of at/cron must be restricted to authorized users.
+   [Test 1.01] Check for at.deny file:[1;32m PASSED[0m
+   [Test 2.01] Check for at.allow file:[1;32m PASSED[0m
+   [Test 3.01] Check for users in at.allow file:[1;32m PASSED[0m
+   [Test 1.02] Check for cron.deny file:[1;32m PASSED[0m
+   [Test 2.02] Check for cron.allow file:[1;32m PASSED[0m
+   [Test 3.02] Check for users in cron.allow file:[1;32m PASSED[0m
+
+++ Req 8: Sticky bit must be set on all world-writable directories.
+   [Test 1.01] Check for world-writable directory for sticky bit:[1;32m PASSED[0m
+
+++ Req 9: No regular files that are world writable must exist.
+   [Test 1.01] Check for world-writable files:[1;32m PASSED[0m
+
+++ Req 10: Passwords must be protected with an appropriate hashing function.
+   [Test 1.01] Check password encryption method:[1;32m PASSED[0m
+   [Test 1.02] Check password encryption min rounds:[1;32m PASSED[0m
+   [Test 1.03] Check password encryption max rounds:[1;32m PASSED[0m
+
+++ Req 11: The default user umask must be 027 or more restrictive.
+   [Test 1.01] Check default umask:[1;32m PASSED[0m
+
+++ Req 12: Not needed SUID and SGID bits must be removed from executables.
+   [Test 1.01] Check file /usr/bin/wall for not allowed SUID bit:[1;32m PASSED[0m
+   [Test 1.02] Check file /usr/bin/chfn for not allowed SUID bit:[1;32m PASSED[0m
+   [Test 1.03] Check file /usr/bin/chage for not allowed SUID bit:[1;32m PASSED[0m
+   [Test 1.04] Check file /usr/bin/chsh for not allowed SUID bit:[1;32m PASSED[0m
+   [Test 1.05] Check file /usr/bin/gpasswd for not allowed SUID bit:[1;32m PASSED[0m
+   [Test 1.06] Check file /usr/bin/newgrp for not allowed SUID bit:[1;32m PASSED[0m
+   [Test 1.07] Check file /usr/bin/passwd for not allowed SUID bit:[1;32m PASSED[0m
+   [Test 1.08] Check file /usr/bin/su for not allowed SUID bit:[1;31m FAILED[0m (SUID set for /usr/bin/su)
+   [Test 1.09] Check file /usr/bin/mount for not allowed SUID bit:[1;31m FAILED[0m (SUID set for /usr/bin/mount)
+   [Test 1.10] Check file /usr/bin/umount for not allowed SUID bit:[1;31m FAILED[0m (SUID set for /usr/bin/umount)
+   [Test 1.11] Check file /usr/bin/write for not allowed SUID bit:[1;32m PASSED[0m
+   [Test 1.12] Check file /usr/bin/sudo for not allowed SUID bit:[1;32m PASSED[0m
+   [Test 1.13] Check file /usr/bin/pkexec for not allowed SUID bit:[1;32m PASSED[0m
+   [Test 1.14] Check file /usr/bin/crontab for not allowed SUID bit:[1;32m PASSED[0m
+   [Test 1.15] Check file /usr/bin/ssh-agent for not allowed SUID bit:[1;32m PASSED[0m
+   [Test 1.16] Check file /usr/sbin/pam_timestamp_check for not allowed SUID bit:[1;31m FAILED[0m (SUID set for /usr/sbin/pam_timestamp_check)
+   [Test 1.17] Check file /usr/sbin/unix_chkpwd for not allowed SUID bit:[1;31m FAILED[0m (SUID set for /usr/sbin/unix_chkpwd)
+   [Test 1.18] Check file /usr/sbin/netreport for not allowed SUID bit:[1;31m FAILED[0m (SUID set for /usr/sbin/netreport)
+   [Test 1.19] Check file /usr/sbin/usernetctl for not allowed SUID bit:[1;31m FAILED[0m (SUID set for /usr/sbin/usernetctl)
+   [Test 1.20] Check file /usr/sbin/userhelper for not allowed SUID bit:[1;31m FAILED[0m (SUID set for /usr/sbin/userhelper)
+   [Test 1.21] Check file /usr/sbin/postdrop for not allowed SUID bit:[1;32m PASSED[0m
+   [Test 1.22] Check file /usr/sbin/postqueue for not allowed SUID bit:[1;32m PASSED[0m
+   [Test 1.23] Check file /usr/lib/polkit-1/polkit-agent-helper-1 for not allowed SUID bit:[1;31m FAILED[0m (SUID set for /usr/lib/polkit-1/polkit-agent-helper-1)
+   [Test 1.24] Check file /usr/libexec/utempter/utempter for not allowed SUID bit:[1;32m PASSED[0m
+   [Test 1.25] Check file /usr/libexec/dbus-1/dbus-daemon-launch-helper for not allowed SUID bit:[1;31m FAILED[0m (SUID set for /usr/libexec/dbus-1/dbus-daemon-launch-helper)
+   [Test 1.26] Check file /usr/libexec/openssh/ssh-keysign for not allowed SUID bit:[1;31m FAILED[0m (SUID set for /usr/libexec/openssh/ssh-keysign)
+
+++ Req 13: Core dumps must be disabled.
+   [Test 1.01] Check if fs.suid_dumpable is 0:[1;32m PASSED[0m
+   [Test 2.01] Check fs.suid_dumpable for correct value 0:[1;32m PASSED[0m
+   [Test 3.01] Check if core dump (soft) is disabled:[1;32m PASSED[0m
+   [Test 3.02] Check if core dump (hard) is disabled:[1;32m PASSED[0m
+
+++ Req 14: Protection against buffer overflows must be enabled.
+   [Test 1.01] Check if kernel.randomize_va_space is 2:[1;32m PASSED[0m
+   [Test 2.01] Check kernel.randomize_va_space for correct value 2:[1;32m PASSED[0m
+   [Test 3.01] Check if NX/XD is enabled:[1;32m PASSED[0m
+
+++ Req 15: IPv4 protocol stack must be securely configured.
+   [Test 1.01] Check if net.ipv4.ip_forward is 0:[1;32m PASSED[0m
+   [Test 2.01] Check net.ipv4.ip_forward for correct value 0:[1;32m PASSED[0m
+   [Test 1.02] Check if net.ipv4.conf.all.accept_redirects is 0:[1;32m PASSED[0m
+   [Test 2.02] Check net.ipv4.conf.all.accept_redirects for correct value 0:[1;32m PASSED[0m
+   [Test 1.03] Check if net.ipv4.conf.default.accept_redirects is 0:[1;32m PASSED[0m
+   [Test 2.03] Check net.ipv4.conf.default.accept_redirects for correct value 0:[1;32m PASSED[0m
+   [Test 1.04] Check if net.ipv4.conf.all.secure_redirects is 1:[1;32m PASSED[0m
+   [Test 2.04] Check net.ipv4.conf.all.secure_redirects for correct value 1:[1;32m PASSED[0m
+   [Test 1.05] Check if net.ipv4.conf.default.secure_redirects is 1:[1;32m PASSED[0m
+   [Test 2.05] Check net.ipv4.conf.default.secure_redirects for correct value 1:[1;32m PASSED[0m
+   [Test 1.06] Check if net.ipv4.conf.all.send_redirects is 0:[1;32m PASSED[0m
+   [Test 2.06] Check net.ipv4.conf.all.send_redirects for correct value 0:[1;32m PASSED[0m
+   [Test 1.07] Check if net.ipv4.conf.default.send_redirects is 0:[1;32m PASSED[0m
+   [Test 2.07] Check net.ipv4.conf.default.send_redirects for correct value 0:[1;32m PASSED[0m
+   [Test 1.08] Check if net.ipv4.conf.all.accept_source_route is 0:[1;32m PASSED[0m
+   [Test 2.08] Check net.ipv4.conf.all.accept_source_route for correct value 0:[1;32m PASSED[0m
+   [Test 1.09] Check if net.ipv4.conf.default.accept_source_route is 0:[1;32m PASSED[0m
+   [Test 2.09] Check net.ipv4.conf.default.accept_source_route for correct value 0:[1;32m PASSED[0m
+   [Test 1.10] Check if net.ipv4.conf.all.log_martians is 1:[1;32m PASSED[0m
+   [Test 2.10] Check net.ipv4.conf.all.log_martians for correct value 1:[1;32m PASSED[0m
+   [Test 1.11] Check if net.ipv4.conf.default.log_martians is 1:[1;32m PASSED[0m
+   [Test 2.11] Check net.ipv4.conf.default.log_martians for correct value 1:[1;32m PASSED[0m
+   [Test 1.12] Check if net.ipv4.icmp_echo_ignore_broadcasts is 1:[1;32m PASSED[0m
+   [Test 2.12] Check net.ipv4.icmp_echo_ignore_broadcasts for correct value 1:[1;32m PASSED[0m
+   [Test 1.13] Check if net.ipv4.icmp_ignore_bogus_error_responses is 1:[1;32m PASSED[0m
+   [Test 2.13] Check net.ipv4.icmp_ignore_bogus_error_responses for correct value 1:[1;32m PASSED[0m
+   [Test 1.14] Check if net.ipv4.conf.all.rp_filter is 1:[1;32m PASSED[0m
+   [Test 2.14] Check net.ipv4.conf.all.rp_filter for correct value 1:[1;32m PASSED[0m
+   [Test 1.15] Check if net.ipv4.conf.default.rp_filter is 1:[1;32m PASSED[0m
+   [Test 2.15] Check net.ipv4.conf.default.rp_filter for correct value 1:[1;32m PASSED[0m
+   [Test 1.16] Check if net.ipv4.tcp_syncookies is 1:[1;32m PASSED[0m
+   [Test 2.16] Check net.ipv4.tcp_syncookies for correct value 1:[1;32m PASSED[0m
+   [Test 1.17] Check if net.ipv4.icmp_ratelimit is 100:[1;32m PASSED[0m
+   [Test 2.17] Check net.ipv4.icmp_ratelimit for correct value 100:[1;32m PASSED[0m
+   [Test 1.18] Check if net.ipv4.icmp_ratemask is 88089:[1;32m PASSED[0m
+   [Test 2.18] Check net.ipv4.icmp_ratemask for correct value 88089:[1;32m PASSED[0m
+   [Test 1.19] Check if net.ipv4.tcp_timestamps is 0:[1;32m PASSED[0m
+   [Test 2.19] Check net.ipv4.tcp_timestamps for correct value 0:[1;32m PASSED[0m
+   [Test 1.20] Check if net.ipv4.conf.all.arp_ignore is 2:[1;32m PASSED[0m
+   [Test 2.20] Check net.ipv4.conf.all.arp_ignore for correct value 2:[1;32m PASSED[0m
+   [Test 1.21] Check if net.ipv4.conf.all.arp_announce is 2:[1;32m PASSED[0m
+   [Test 2.21] Check net.ipv4.conf.all.arp_announce for correct value 2:[1;32m PASSED[0m
+   [Test 1.22] Check if net.ipv4.conf.all.arp_notify is 0:[1;32m PASSED[0m
+   [Test 2.22] Check net.ipv4.conf.all.arp_notify for correct value 0:[1;32m PASSED[0m
+   [Test 1.23] Check if net.ipv4.conf.all.arp_accept is 0:[1;32m PASSED[0m
+   [Test 2.23] Check net.ipv4.conf.all.arp_accept for correct value 0:[1;32m PASSED[0m
+
+++ Req 16: IPv6 protocol stack must be securely configured.
+   [Test -.--] Checks for requirement 16 disabled: SKIPPED (N/A)
+
+++ Req 17: Emerged vulnerabilities in software and hardware of a system must be
+   fixed or protected against misuse.
+   [Test 1.01] Check if system is up-to-date:[1;32m PASSED[0m
+
+++ Req 18: GPG Check for repository server must be activated and corresponding keys
+   for trustable repositories must be configured.
+   [Test 1.01] Check if use of trusted repos is enabled:[1;32m PASSED[0m
+
+++ Req 19: User accounts must be used that allow unambiguous identification of the user.
+   [Test 1.01] Check local user accounts:[1;31m FAILED[0m (found account ssm-user)
+   [Test 1.02] Check local user accounts:[1;31m FAILED[0m (found account pety)
+   [Test 1.03] Check local user accounts:[1;31m FAILED[0m (found account A11343771)
+   [Test 1.04] Check local user accounts:[1;31m FAILED[0m (found account A319671)
+   [Test 1.05] Check local user accounts:[1;31m FAILED[0m (found account A11112)
+   [Test 1.06] Check local user accounts:[1;31m FAILED[0m (found account A352183)
+
+++ Req 20: System accounts must be non-login.
+   [Test 1.01] Check system accounts if non-login:[1;32m PASSED[0m
+
+++ Req 21: User accounts must be protected against unauthorized use by at least
+   one authentication attribute.
+   [Test 1.02] Check accounts in /etc/shadow:[1;32m PASSED[0m
+
+++ Req 22: User accounts with extensive rights must be protected with two
+   authentication attributes.
+   [Test 1.01] Check if SSH PubkeyAuthentication is yes:[1;32m PASSED[0m
+   [Test 2.01] Check if SSH PasswordAuthentication is no:[1;32m PASSED[0m
+
+++ Req 23: The system must be connected to a central system for user
+   administration.
+   [Test -.--] Check if system for central authentication is configured: SKIPPED
+	[33mNOTE![0m Automated testing not implemented: Check manual!
+
+++ Req 24: Authentication must be used for single user mode.
+   [Test 1.01] Check single user mode:[1;32m PASSED[0m
+
+++ Req 25: The management of the operating system must be done via a
+   dedicated management network.
+   [Test -.--] Checks for requirement 25 disabled: SKIPPED (N/A)
+
+++ Req 26: Management services must be bound to the management network.
+   [Test -.--] Checks for requirement 26 disabled: SKIPPED (N/A)
+
+++ Req 27: Encrypted protocols must be used for management access to administrate
+   the operating system.
+   [Test 1.02] Check if SSH deamon is running:[1;32m PASSED[0m
+
+++ Req 28: Auditing must be enabled at boot by setting a kernel parameter.
+   [Test 1.03] Check if audit is present in grub.conf:[1;32m PASSED[0m
+   [Test 1.04] Check if audit is present in grub.conf:[1;32m PASSED[0m
+   [Test 1.05] Check if audit is present in grub.conf:[1;32m PASSED[0m
+   [Test 1.06] Check if audit is present in grub.conf:[1;32m PASSED[0m
+   [Test 2.07] Check if audit is present in /etc/default/grub:[1;32m PASSED[0m
+
+++ Req 29: Log rotation for logfiles must be configured.
+   [Test 1.01] Check if logrotate time is set to weekly:[1;32m PASSED[0m
+   [Test 2.01] Check if logrotate count is set to 4:[1;32m PASSED[0m
+   [Test 3.01] Check if logrotate size is set to 10M:[1;32m PASSED[0m
+
+++ Req 30: System time must be synchronized against a reference time source.
+   [Test 1.01] Check if chrony is installed:[1;32m PASSED[0m
+   [Test 2.01] Check if time is synchronized:[1;32m PASSED[0m
+   [Test 3.01] Check if timezone is UTC:[1;32m PASSED[0m
+
+++ Req 31: Auditd service must be used to log security relevant events.
+   [Test 1.01] Check if audit is installed:[1;32m PASSED[0m
+   [Test 2.01] Check if audit is enabled:[1;32m PASSED[0m
+   [Test 3.01] Check config if max size of logfiles is 10:[1;32m PASSED[0m
+   [Test 4.01] Check config if number of logfiles is 5:[1;32m PASSED[0m
+   [Test 5.01] Check config if logfile action is ROTATE:[1;32m PASSED[0m
+
+++ Req 32: System events must be logged.
+   [Test 1.01] Check auditd for system events:[1;32m PASSED[0m
+   [Test 1.02] Check auditd for system events:[1;32m PASSED[0m
+   [Test 1.03] Check auditd for system events:[1;32m PASSED[0m
+   [Test 1.04] Check auditd for system events:[1;32m PASSED[0m
+   [Test 1.05] Check auditd for system events:[1;32m PASSED[0m
+   [Test 1.06] Check auditd for system events:[1;32m PASSED[0m
+   [Test 1.07] Check auditd for system events:[1;32m PASSED[0m
+   [Test 1.08] Check auditd for system events:[1;32m PASSED[0m
+   [Test 1.09] Check auditd for system events:[1;32m PASSED[0m
+   [Test 1.10] Check auditd for system events:[1;32m PASSED[0m
+   [Test 1.11] Check auditd for system events:[1;32m PASSED[0m
+   [Test 1.12] Check auditd for system events:[1;32m PASSED[0m
+   [Test 1.13] Check auditd for system events:[1;32m PASSED[0m
+   [Test 1.14] Check auditd for system events:[1;32m PASSED[0m
+   [Test 1.15] Check auditd for system events:[1;32m PASSED[0m
+   [Test 1.16] Check auditd for system events:[1;32m PASSED[0m
+   [Test 1.17] Check auditd for system events:[1;32m PASSED[0m
+   [Test 1.18] Check auditd for system events:[1;32m PASSED[0m
+   [Test 1.19] Check auditd for system events:[1;32m PASSED[0m
+   [Test 1.20] Check auditd for system events:[1;32m PASSED[0m
+   [Test 1.21] Check auditd for system events:[1;32m PASSED[0m
+   [Test 1.22] Check auditd for system events:[1;32m PASSED[0m
+   [Test 1.23] Check auditd for system events:[1;32m PASSED[0m
+   [Test 1.24] Check auditd for system events:[1;32m PASSED[0m
+   [Test 2.01] Check auditd for OS specific system events:[1;32m PASSED[0m
+   [Test 2.02] Check auditd for OS specific system events:[1;32m PASSED[0m
+
+++ Req 33: Access and Authentication events must be logged.
+   [Test 1.01] Check auditd for account events:[1;32m PASSED[0m
+   [Test 1.02] Check auditd for account events:[1;32m PASSED[0m
+   [Test 1.03] Check auditd for account events:[1;32m PASSED[0m
+   [Test 1.04] Check auditd for account events:[1;32m PASSED[0m
+   [Test 1.05] Check auditd for account events:[1;32m PASSED[0m
+   [Test 1.06] Check auditd for account events:[1;32m PASSED[0m
+   [Test 1.07] Check auditd for account events:[1;32m PASSED[0m
+   [Test 1.08] Check auditd for account events:[1;32m PASSED[0m
+   [Test 1.09] Check auditd for account events:[1;32m PASSED[0m
+   [Test 1.10] Check auditd for account events:[1;32m PASSED[0m
+   [Test 2.01] Check auditd for OS specific account events:[1;32m PASSED[0m
+   [Test 2.02] Check auditd for OS specific account events:[1;32m PASSED[0m
+   [Test 3.01] Check auditd for events for priviledged command /usr/bin/wall:[1;32m PASSED[0m
+   [Test 3.02] Check auditd for events for priviledged command /usr/bin/chfn:[1;32m PASSED[0m
+   [Test 3.03] Check auditd for events for priviledged command /usr/bin/chage:[1;32m PASSED[0m
+   [Test 3.04] Check auditd for events for priviledged command /usr/bin/chsh:[1;32m PASSED[0m
+   [Test 3.05] Check auditd for events for priviledged command /usr/bin/gpasswd:[1;32m PASSED[0m
+   [Test 3.06] Check auditd for events for priviledged command /usr/bin/newgrp:[1;32m PASSED[0m
+   [Test 3.07] Check auditd for events for priviledged command /usr/bin/passwd:[1;32m PASSED[0m
+   [Test 3.08] Check auditd for events for priviledged command /usr/bin/su:[1;32m PASSED[0m
+   [Test 3.09] Check auditd for events for priviledged command /usr/bin/mount:[1;32m PASSED[0m
+   [Test 3.10] Check auditd for events for priviledged command /usr/bin/umount:[1;32m PASSED[0m
+   [Test 3.11] Check auditd for events for priviledged command /usr/bin/write:[1;32m PASSED[0m
+   [Test 3.12] Check auditd for events for priviledged command /usr/bin/sudo:[1;32m PASSED[0m
+   [Test 3.13] Check auditd for events for priviledged command /usr/bin/pkexec:[1;32m PASSED[0m
+   [Test 3.14] Check auditd for events for priviledged command /usr/bin/crontab:[1;32m PASSED[0m
+   [Test 3.15] Check auditd for events for priviledged command /usr/bin/ssh-agent:[1;32m PASSED[0m
+   [Test 3.16] Check auditd for events for priviledged command /usr/sbin/pam_timestamp_check:[1;32m PASSED[0m
+   [Test 3.17] Check auditd for events for priviledged command /usr/sbin/unix_chkpwd:[1;32m PASSED[0m
+   [Test 3.18] Check auditd for events for priviledged command /usr/sbin/netreport:[1;32m PASSED[0m
+   [Test 3.19] Check auditd for events for priviledged command /usr/sbin/usernetctl:[1;32m PASSED[0m
+   [Test 3.20] Check auditd for events for priviledged command /usr/sbin/userhelper:[1;32m PASSED[0m
+   [Test 3.21] Check auditd for events for priviledged command /usr/sbin/postdrop:[1;32m PASSED[0m
+   [Test 3.22] Check auditd for events for priviledged command /usr/sbin/postqueue:[1;32m PASSED[0m
+   [Test 3.23] Check auditd for events for priviledged command /usr/lib/polkit-1/polkit-agent-helper-1:[1;32m PASSED[0m
+   [Test 3.24] Check auditd for events for priviledged command /usr/libexec/utempter/utempter:[1;32m PASSED[0m
+   [Test 3.25] Check auditd for events for priviledged command /usr/libexec/dbus-1/dbus-daemon-launch-helper:[1;32m PASSED[0m
+   [Test 3.26] Check auditd for events for priviledged command /usr/libexec/openssh/ssh-keysign:[1;32m PASSED[0m
+
+++ Req 34: Account and Group Management events must be logged.
+   [Test 1.01] Check auditd for account mgmt events:[1;32m PASSED[0m
+   [Test 1.02] Check auditd for account mgmt events:[1;32m PASSED[0m
+
+++ Req 35: Configuration Change events must be logged.
+   [Test 1.01] Check auditd for change events:[1;32m PASSED[0m
+   [Test 1.02] Check auditd for change events:[1;31m FAILED[0m (event missing: -w /var/log/audit/audit\[1-4\].log)
+   [Test 1.03] Check auditd for change events:[1;31m FAILED[0m (event missing: -w /etc/syslog)
+   [Test 1.04] Check auditd for change events:[1;32m PASSED[0m
+   [Test 1.05] Check auditd for change events:[1;32m PASSED[0m
+   [Test 1.06] Check auditd for change events:[1;32m PASSED[0m
+   [Test 1.07] Check auditd for change events:[1;32m PASSED[0m
+   [Test 1.08] Check auditd for change events:[1;32m PASSED[0m
+   [Test 1.09] Check auditd for change events:[1;32m PASSED[0m
+   [Test 1.10] Check auditd for change events:[1;32m PASSED[0m
+   [Test 1.11] Check auditd for change events:[1;32m PASSED[0m
+   [Test 1.12] Check auditd for change events:[1;32m PASSED[0m
+   [Test 1.13] Check auditd for change events:[1;32m PASSED[0m
+   [Test 1.14] Check auditd for change events:[1;32m PASSED[0m
+   [Test 1.15] Check auditd for change events:[1;32m PASSED[0m
+   [Test 1.16] Check auditd for change events:[1;32m PASSED[0m
+   [Test 1.17] Check auditd for change events:[1;32m PASSED[0m
+   [Test 1.18] Check auditd for change events:[1;32m PASSED[0m
+   [Test 1.19] Check auditd for change events:[1;32m PASSED[0m
+   [Test 1.20] Check auditd for change events:[1;32m PASSED[0m
+   [Test 1.21] Check auditd for change events:[1;32m PASSED[0m
+   [Test 2.01] Check auditd for OS specific change events:[1;32m PASSED[0m
+   [Test 2.02] Check auditd for OS specific change events:[1;32m PASSED[0m
+   [Test 2.03] Check auditd for OS specific change events:[1;32m PASSED[0m
+
+++ Req 36: Auditd configuration must be immutable.
+   [Test 1.01] Check auditd config is immutable:[1;32m PASSED[0m
+
+++ Req 37: Security relevant logging data must be send to an external
+   system direct after their creation.
+   [Test 1.01] Check rsyslog is installed and running:[1;32m PASSED[0m
+
+++ Req 38: If RSyslog is used, the default permission of 640 or more
+   restrictive for logfiles must be configured.
+   [Test 1.01] Check if priviledges of /etc/rsyslog.conf is 640 or less:[1;32m PASSED[0m
+   [Test 2.01] Check if owner of /etc/rsyslog.conf is root:[1;32m PASSED[0m
+   [Test 3.01] Check if group of /etc/rsyslog.conf is root:[1;32m PASSED[0m
+
+++ Req 39: If RSyslog is used, at least one central logging server must be
+   configured.
+   [Test 1.01] Check rsyslog configuration:[1;32m PASSED[0m
+
+++ Req 40: If Syslog-NG is used, the default permission of 640 or more
+   restrictive for logfiles must be configured.
+   [Test -.--] Checks for requirement 40 disabled: SKIPPED (N/A)
+
+++ Req 41: If Syslog-NG is used, at least one central logging server must be
+   configured.
+   [Test -.--] Checks for requirement 41 disabled: SKIPPED (N/A)
+
+++ Req 42: If PAM is used, it needs to be reconfigured to use strong salted
+   password hash functions while doing many calculation rounds to protect
+   passwords.
+   [Test 1.01] Check pam (/etc/pam.d/password-auth) encryption method (sha512) for password hashing:[1;32m PASSED[0m
+   [Test 2.01] Check pam (/etc/pam.d/password-auth) for rounds (640000) for password hashing:[1;32m PASSED[0m
+   [Test 1.02] Check pam (/etc/pam.d/system-auth) encryption method (sha512) for password hashing:[1;32m PASSED[0m
+   [Test 2.02] Check pam (/etc/pam.d/system-auth) for rounds (640000) for password hashing:[1;32m PASSED[0m
+
+++ Req 43: If PAM is used, password rules must be configured for PAM to
+   force the use of passwords with a minimum length of 12 characters
+   and a combination of three out of the following categories: upper
+   cases, lower case, numbers and special characters.
+   [Test 1.01] Check pam (/etc/security/pwquality.conf) password length (12):[1;32m PASSED[0m
+   [Test 2.01] Check pam (/etc/security/pwquality.conf) allowed character classes (3) for passwords:[1;32m PASSED[0m
+   [Test 1.02] Check pam (/etc/security/pwquality.conf) password length (12):[1;32m PASSED[0m
+   [Test 2.02] Check pam (/etc/security/pwquality.conf) allowed character classes (3) for passwords:[1;32m PASSED[0m
+   [Test 3.01] Check for password complexity rules:[1;32m PASSED[0m
+
+++ Req 44: If PAM is used, a protection against brute force and dictionary
+   attacks that hinder password guessing must be configured in PAM.
+   [Test 1.01] Check pam (/etc/pam.d/password-auth) failed login attemps (5):[1;32m PASSED[0m
+   [Test 2.01] Check pam (/etc/pam.d/password-auth) unlock time (600):[1;32m PASSED[0m
+   [Test 1.02] Check pam (/etc/pam.d/system-auth) failed login attemps (5):[1;32m PASSED[0m
+   [Test 2.02] Check pam (/etc/pam.d/system-auth) unlock time (600):[1;32m PASSED[0m
+
+++ Req 45: If PAM is used, PAM must be configured that motd did not
+   contain any sensitive data.
+   [Test 1.01] Check pam (/etc/pam.d/login) if motd is enabled:[1;32m PASSED[0m
+   [Test 1.02] Check pam (/etc/pam.d/sshd) if motd is enabled:[1;32m PASSED[0m
+
+++ Req 46: If iptables is used, policies for loopback traffic must be configured.
+   [Test 1.01] Check iptables ipv4 rule '-A INPUT -i lo -j ACCEPT':[1;31m FAILED[0m (rule missing)
+   [Test 1.02] Check iptables ipv4 rule '-A OUTPUT -o lo -j ACCEPT':[1;31m FAILED[0m (rule missing)
+   [Test 1.03] Check iptables ipv4 rule '-A INPUT -s 127.0.0.0/8 -j DROP':[1;31m FAILED[0m (rule missing)
+   [Test 2.1] Check iptables IPv6 rules: n/a (IPv6 disabled)
+
+++ Req 47: If iptables is used, policies for outbound and established connections
+   must be configured.
+   [Test 1.01] Check iptables ipv4 rule '-A OUTPUT -p tcp -m state --state NEW,ESTABLISHED -j ACCEPT':[1;31m FAILED[0m (rule missing)
+   [Test 1.02] Check iptables ipv4 rule '-A OUTPUT -p udp -m state --state NEW,ESTABLISHED -j ACCEPT':[1;31m FAILED[0m (rule missing)
+   [Test 1.03] Check iptables ipv4 rule '-A OUTPUT -p icmp -m state --state NEW,ESTABLISHED -j ACCEPT':[1;31m FAILED[0m (rule missing)
+   [Test 1.04] Check iptables ipv4 rule '-A INPUT -p tcp -m state --state ESTABLISHED -j ACCEPT':[1;31m FAILED[0m (rule missing)
+   [Test 1.05] Check iptables ipv4 rule '-A INPUT -p udp -m state --state ESTABLISHED -j ACCEPT':[1;31m FAILED[0m (rule missing)
+   [Test 1.06] Check iptables ipv4 rule '-A INPUT -p icmp -m state --state ESTABLISHED -j ACCEPT':[1;31m FAILED[0m (rule missing)
+   [Test 2.1] Check iptables IPv6 rules: n/a (IPv6 disabled)
+
+++ Req 48: If iptables is used, policies must exist for all ports in
+   listening state.
+   [Test 1.01] Check iptables rules for TCP port 22:[1;31m FAILED[0m (no rule exists)
+   [Test 2.1] Check iptables IPv6 TCP rules: n/a (IPv6 disabled)
+   [Test 3.01] Check iptables rules for UDP port 68:[1;31m FAILED[0m (no rule exists)
+   [Test 3.02] Check iptables rules for UDP port 123:[1;31m FAILED[0m (no rule exists)
+   [Test 2.1] Check iptables IPv6 UDP rules: n/a (IPv6 disabled)
+   [Test 5.01] Check iptables rule for ICMP:[1;31m FAILED[0m (rule missing)
+   [Test 2.1] Check iptables IPv6 ICMP rules: n/a (IPv6 disabled)
+
+++ Req 49: If iptables is used, the default policy for tables INPUT and FORWARD
+   must be configured to drop all traffic.
+/var/tmp/tel-it-security-automation_pety/testing/test_linux.sh: line 2770: [: not: binary operator expected
+   [Test -.--] Checks for requirement 49 disabled: SKIPPED (N/A)
+
+++ Req 50: If a system has Internet facing services or is a virtualization
+   host, a MAC solution must be used to restrict these services
+   respectively guest VMs.
+   [Test 1.01] Check if MAC package (libselinux) is installed:[1;32m PASSED[0m
+   [Test 2.01] Check if SELinux is enabled:[1;31m FAILED[0m (SELinux is disabled)
+   [Test -.--] Check if AppArmor is enabled: SKIPPED (AppArmor not used)
+
+++ Req 51: If SELinux is used, it must not be disabled in bootloader
+   configuration.
+   [Test 1.01] Check if SELinux is not 0 in /boot/grub2/grub.cfg:[1;32m PASSED[0m
+   [Test 2.01] Check if enforcing is not 0 in /boot/grub2/grub.cfg:[1;32m PASSED[0m
+
+++ Req 52: If SELinux is used, it must be run in 'enforcing' mode to actually
+   enforce policy.
+   [Test 1.01] Check if enforcing is set in file '/etc/selinux/config' for SELinux:[1;31m FAILED[0m (no config found)
+   [Test 2.01] Check if enforcing is activated for SELinux:[1;31m FAILED[0m (not enforced)
+
+++ Req 53: If SELinux is used, the policy must be configured.
+   [Test -.--] Checks for requirement 53 disabled: SKIPPED (N/A)
+
+++ Req 54: If SELinux is used, SETroubleshoot and MCS Translation Service
+   must not be installed.
+   [Test -.--] Checks for requirement 54 disabled: SKIPPED (N/A)
+
+++ Req 55: If AppArmor is used, it must not be disabled in bootloader
+   configuration.
+   [Test -.--] Check if AppArmor is enabled grub config: SKIPPED (AppArmor not used)
+
+++ Req 56: If AppArmor is used, its state must be enforced.
+   [Test -.--] Check if enforcing is activated for AppArmor: SKIPPED (AppArmor not used)
+
+++ Req 57: No legacy + entries must exist in files passwd, shadows and group.
+   [Test 1.01] Check file (/etc/passwd) legacy + entries:[1;32m PASSED[0m
+   [Test 1.02] Check file (/etc/shadow) legacy + entries:[1;32m PASSED[0m
+   [Test 1.03] Check file (/etc/group) legacy + entries:[1;32m PASSED[0m
+
+++ Req 58: A user's home directory must be owned by the user and have mode
+   750 or more restrictive.
+   [Test 1.01] Check file (A11112) for correct user setting:[1;32m PASSED[0m
+   [Test 2.01] Check file (A11112) for correct group setting:[1;31m FAILED[0m (wrong group LinuxUsers)
+   [Test 3.01] Check file (A11112) for correct privileges (750):[1;32m PASSED[0m
+   [Test 1.02] Check file (A11343771) for correct user setting:[1;32m PASSED[0m
+   [Test 2.02] Check file (A11343771) for correct group setting:[1;31m FAILED[0m (wrong group LinuxUsers)
+   [Test 3.02] Check file (A11343771) for correct privileges (750):[1;32m PASSED[0m
+   [Test 1.03] Check file (A319671) for correct user setting:[1;32m PASSED[0m
+   [Test 2.03] Check file (A319671) for correct group setting:[1;31m FAILED[0m (wrong group LinuxUsers)
+   [Test 3.03] Check file (A319671) for correct privileges (750):[1;32m PASSED[0m
+   [Test 1.04] Check file (A352183) for correct user setting:[1;32m PASSED[0m
+   [Test 2.04] Check file (A352183) for correct group setting:[1;31m FAILED[0m (wrong group LinuxUsers)
+   [Test 3.04] Check file (A352183) for correct privileges (750):[1;32m PASSED[0m
+   [Test 1.05] Check file (pety) for correct user setting:[1;32m PASSED[0m
+   [Test 2.05] Check file (pety) for correct group setting:[1;32m PASSED[0m
+   [Test 3.05] Check file (pety) for correct privileges (750):[1;32m PASSED[0m
+   [Test 1.06] Check file (ssm-user) for correct user setting:[1;32m PASSED[0m
+   [Test 2.06] Check file (ssm-user) for correct group setting:[1;32m PASSED[0m
+   [Test 3.06] Check file (ssm-user) for correct privileges (750):[1;32m PASSED[0m
+
+++ Req 59: Default group for the root account must be GID 0.
+   [Test 1.01] Check if group for root is GID 0:[1;32m PASSED[0m
+
+++ Req 60: Root must be the only UID 0 account.
+   [Test 1.01] Check if root is the only account with UID 0:[1;32m PASSED[0m
+
+++ Req 61: All groups in /etc/passwd must exist in /etc/group.
+   [Test 1.01] Check if group from /etc/passwd (0) exists in /etc/group:[1;32m PASSED[0m
+   [Test 1.02] Check if group from /etc/passwd (1) exists in /etc/group:[1;32m PASSED[0m
+   [Test 1.03] Check if group from /etc/passwd (100) exists in /etc/group:[1;32m PASSED[0m
+   [Test 1.04] Check if group from /etc/passwd (1001) exists in /etc/group:[1;32m PASSED[0m
+   [Test 1.05] Check if group from /etc/passwd (1002) exists in /etc/group:[1;32m PASSED[0m
+   [Test 1.06] Check if group from /etc/passwd (1003) exists in /etc/group:[1;32m PASSED[0m
+   [Test 1.07] Check if group from /etc/passwd (12) exists in /etc/group:[1;32m PASSED[0m
+   [Test 1.08] Check if group from /etc/passwd (192) exists in /etc/group:[1;32m PASSED[0m
+   [Test 1.09] Check if group from /etc/passwd (2) exists in /etc/group:[1;32m PASSED[0m
+   [Test 1.10] Check if group from /etc/passwd (38) exists in /etc/group:[1;32m PASSED[0m
+   [Test 1.11] Check if group from /etc/passwd (4) exists in /etc/group:[1;32m PASSED[0m
+   [Test 1.12] Check if group from /etc/passwd (50) exists in /etc/group:[1;32m PASSED[0m
+   [Test 1.13] Check if group from /etc/passwd (7) exists in /etc/group:[1;32m PASSED[0m
+   [Test 1.14] Check if group from /etc/passwd (74) exists in /etc/group:[1;32m PASSED[0m
+   [Test 1.15] Check if group from /etc/passwd (81) exists in /etc/group:[1;32m PASSED[0m
+   [Test 1.16] Check if group from /etc/passwd (89) exists in /etc/group:[1;32m PASSED[0m
+   [Test 1.17] Check if group from /etc/passwd (99) exists in /etc/group:[1;32m PASSED[0m
+   [Test 1.18] Check if group from /etc/passwd (995) exists in /etc/group:[1;32m PASSED[0m
+   [Test 1.19] Check if group from /etc/passwd (998) exists in /etc/group:[1;32m PASSED[0m
+
+++ Req 62: No duplicate UIDs and GIDs must exist.
+   [Test 1.01] Check in /etc/passwd if UID 0 exists more than once:[1;32m PASSED[0m
+   [Test 1.02] Check in /etc/passwd if UID 1 exists more than once:[1;32m PASSED[0m
+   [Test 1.03] Check in /etc/passwd if UID 2 exists more than once:[1;32m PASSED[0m
+   [Test 1.04] Check in /etc/passwd if UID 3 exists more than once:[1;32m PASSED[0m
+   [Test 1.05] Check in /etc/passwd if UID 4 exists more than once:[1;32m PASSED[0m
+   [Test 1.06] Check in /etc/passwd if UID 5 exists more than once:[1;32m PASSED[0m
+   [Test 1.07] Check in /etc/passwd if UID 6 exists more than once:[1;32m PASSED[0m
+   [Test 1.08] Check in /etc/passwd if UID 7 exists more than once:[1;32m PASSED[0m
+   [Test 1.09] Check in /etc/passwd if UID 8 exists more than once:[1;32m PASSED[0m
+   [Test 1.10] Check in /etc/passwd if UID 11 exists more than once:[1;32m PASSED[0m
+   [Test 1.11] Check in /etc/passwd if UID 12 exists more than once:[1;32m PASSED[0m
+   [Test 1.12] Check in /etc/passwd if UID 14 exists more than once:[1;32m PASSED[0m
+   [Test 1.13] Check in /etc/passwd if UID 99 exists more than once:[1;32m PASSED[0m
+   [Test 1.14] Check in /etc/passwd if UID 192 exists more than once:[1;32m PASSED[0m
+   [Test 1.15] Check in /etc/passwd if UID 81 exists more than once:[1;32m PASSED[0m
+   [Test 1.16] Check in /etc/passwd if UID 999 exists more than once:[1;32m PASSED[0m
+   [Test 1.17] Check in /etc/passwd if UID 74 exists more than once:[1;32m PASSED[0m
+   [Test 1.18] Check in /etc/passwd if UID 89 exists more than once:[1;32m PASSED[0m
+   [Test 1.19] Check in /etc/passwd if UID 998 exists more than once:[1;32m PASSED[0m
+   [Test 1.20] Check in /etc/passwd if UID 1001 exists more than once:[1;32m PASSED[0m
+   [Test 1.21] Check in /etc/passwd if UID 1002 exists more than once:[1;32m PASSED[0m
+   [Test 1.22] Check in /etc/passwd if UID 38 exists more than once:[1;32m PASSED[0m
+   [Test 1.23] Check in /etc/passwd if UID 1003 exists more than once:[1;32m PASSED[0m
+   [Test 1.24] Check in /etc/passwd if UID 1004 exists more than once:[1;32m PASSED[0m
+   [Test 1.25] Check in /etc/passwd if UID 1005 exists more than once:[1;32m PASSED[0m
+   [Test 1.26] Check in /etc/passwd if UID 1006 exists more than once:[1;32m PASSED[0m
+   [Test 2.01] Check in /etc/group if GID 0 exists more than once:[1;32m PASSED[0m
+   [Test 2.02] Check in /etc/group if GID 1 exists more than once:[1;32m PASSED[0m
+   [Test 2.03] Check in /etc/group if GID 2 exists more than once:[1;32m PASSED[0m
+   [Test 2.04] Check in /etc/group if GID 3 exists more than once:[1;32m PASSED[0m
+   [Test 2.05] Check in /etc/group if GID 4 exists more than once:[1;32m PASSED[0m
+   [Test 2.06] Check in /etc/group if GID 5 exists more than once:[1;32m PASSED[0m
+   [Test 2.07] Check in /etc/group if GID 6 exists more than once:[1;32m PASSED[0m
+   [Test 2.08] Check in /etc/group if GID 7 exists more than once:[1;32m PASSED[0m
+   [Test 2.09] Check in /etc/group if GID 8 exists more than once:[1;32m PASSED[0m
+   [Test 2.10] Check in /etc/group if GID 9 exists more than once:[1;32m PASSED[0m
+   [Test 2.11] Check in /etc/group if GID 10 exists more than once:[1;32m PASSED[0m
+   [Test 2.12] Check in /etc/group if GID 11 exists more than once:[1;32m PASSED[0m
+   [Test 2.13] Check in /etc/group if GID 12 exists more than once:[1;32m PASSED[0m
+   [Test 2.14] Check in /etc/group if GID 15 exists more than once:[1;32m PASSED[0m
+   [Test 2.15] Check in /etc/group if GID 18 exists more than once:[1;32m PASSED[0m
+   [Test 2.16] Check in /etc/group if GID 19 exists more than once:[1;32m PASSED[0m
+   [Test 2.17] Check in /etc/group if GID 20 exists more than once:[1;32m PASSED[0m
+   [Test 2.18] Check in /etc/group if GID 33 exists more than once:[1;32m PASSED[0m
+   [Test 2.19] Check in /etc/group if GID 39 exists more than once:[1;32m PASSED[0m
+   [Test 2.20] Check in /etc/group if GID 50 exists more than once:[1;32m PASSED[0m
+   [Test 2.21] Check in /etc/group if GID 54 exists more than once:[1;32m PASSED[0m
+   [Test 2.22] Check in /etc/group if GID 63 exists more than once:[1;32m PASSED[0m
+   [Test 2.23] Check in /etc/group if GID 99 exists more than once:[1;32m PASSED[0m
+   [Test 2.24] Check in /etc/group if GID 100 exists more than once:[1;32m PASSED[0m
+   [Test 2.25] Check in /etc/group if GID 22 exists more than once:[1;32m PASSED[0m
+   [Test 2.26] Check in /etc/group if GID 35 exists more than once:[1;32m PASSED[0m
+   [Test 2.27] Check in /etc/group if GID 999 exists more than once:[1;32m PASSED[0m
+   [Test 2.28] Check in /etc/group if GID 190 exists more than once:[1;32m PASSED[0m
+   [Test 2.29] Check in /etc/group if GID 192 exists more than once:[1;32m PASSED[0m
+   [Test 2.30] Check in /etc/group if GID 81 exists more than once:[1;32m PASSED[0m
+   [Test 2.31] Check in /etc/group if GID 998 exists more than once:[1;32m PASSED[0m
+   [Test 2.32] Check in /etc/group if GID 997 exists more than once:[1;32m PASSED[0m
+   [Test 2.33] Check in /etc/group if GID 996 exists more than once:[1;32m PASSED[0m
+   [Test 2.34] Check in /etc/group if GID 74 exists more than once:[1;32m PASSED[0m
+   [Test 2.35] Check in /etc/group if GID 90 exists more than once:[1;32m PASSED[0m
+   [Test 2.36] Check in /etc/group if GID 89 exists more than once:[1;32m PASSED[0m
+   [Test 2.37] Check in /etc/group if GID 995 exists more than once:[1;32m PASSED[0m
+   [Test 2.38] Check in /etc/group if GID 1001 exists more than once:[1;32m PASSED[0m
+   [Test 2.39] Check in /etc/group if GID 1002 exists more than once:[1;32m PASSED[0m
+   [Test 2.40] Check in /etc/group if GID 38 exists more than once:[1;32m PASSED[0m
+   [Test 2.41] Check in /etc/group if GID 1003 exists more than once:[1;32m PASSED[0m
+
+++ Req 63: No duplicate user and group names must exist.
+   [Test 1.01] Check in /etc/passwd if user root exists more than once:[1;32m PASSED[0m
+   [Test 1.02] Check in /etc/passwd if user bin exists more than once:[1;32m PASSED[0m
+   [Test 1.03] Check in /etc/passwd if user daemon exists more than once:[1;32m PASSED[0m
+   [Test 1.04] Check in /etc/passwd if user adm exists more than once:[1;32m PASSED[0m
+   [Test 1.05] Check in /etc/passwd if user lp exists more than once:[1;32m PASSED[0m
+   [Test 1.06] Check in /etc/passwd if user sync exists more than once:[1;32m PASSED[0m
+   [Test 1.07] Check in /etc/passwd if user shutdown exists more than once:[1;32m PASSED[0m
+   [Test 1.08] Check in /etc/passwd if user halt exists more than once:[1;32m PASSED[0m
+   [Test 1.09] Check in /etc/passwd if user mail exists more than once:[1;32m PASSED[0m
+   [Test 1.10] Check in /etc/passwd if user operator exists more than once:[1;32m PASSED[0m
+   [Test 1.11] Check in /etc/passwd if user games exists more than once:[1;32m PASSED[0m
+   [Test 1.12] Check in /etc/passwd if user ftp exists more than once:[1;32m PASSED[0m
+   [Test 1.13] Check in /etc/passwd if user nobody exists more than once:[1;32m PASSED[0m
+   [Test 1.14] Check in /etc/passwd if user systemd-network exists more than once:[1;32m PASSED[0m
+   [Test 1.15] Check in /etc/passwd if user dbus exists more than once:[1;32m PASSED[0m
+   [Test 1.16] Check in /etc/passwd if user polkitd exists more than once:[1;32m PASSED[0m
+   [Test 1.17] Check in /etc/passwd if user sshd exists more than once:[1;32m PASSED[0m
+   [Test 1.18] Check in /etc/passwd if user postfix exists more than once:[1;32m PASSED[0m
+   [Test 1.19] Check in /etc/passwd if user chrony exists more than once:[1;32m PASSED[0m
+   [Test 1.20] Check in /etc/passwd if user ssm-user exists more than once:[1;32m PASSED[0m
+   [Test 1.21] Check in /etc/passwd if user pety exists more than once:[1;32m PASSED[0m
+   [Test 1.22] Check in /etc/passwd if user ntp exists more than once:[1;32m PASSED[0m
+   [Test 1.23] Check in /etc/passwd if user A11343771 exists more than once:[1;32m PASSED[0m
+   [Test 1.24] Check in /etc/passwd if user A319671 exists more than once:[1;32m PASSED[0m
+   [Test 1.25] Check in /etc/passwd if user A11112 exists more than once:[1;32m PASSED[0m
+   [Test 1.26] Check in /etc/passwd if user A352183 exists more than once:[1;32m PASSED[0m
+   [Test 2.01] Check in /etc/group if group root exists more than once:[1;32m PASSED[0m
+   [Test 2.02] Check in /etc/group if group bin exists more than once:[1;32m PASSED[0m
+   [Test 2.03] Check in /etc/group if group daemon exists more than once:[1;32m PASSED[0m
+   [Test 2.04] Check in /etc/group if group sys exists more than once:[1;32m PASSED[0m
+   [Test 2.05] Check in /etc/group if group adm exists more than once:[1;32m PASSED[0m
+   [Test 2.06] Check in /etc/group if group tty exists more than once:[1;32m PASSED[0m
+   [Test 2.07] Check in /etc/group if group disk exists more than once:[1;32m PASSED[0m
+   [Test 2.08] Check in /etc/group if group lp exists more than once:[1;32m PASSED[0m
+   [Test 2.09] Check in /etc/group if group mem exists more than once:[1;32m PASSED[0m
+   [Test 2.10] Check in /etc/group if group kmem exists more than once:[1;32m PASSED[0m
+   [Test 2.11] Check in /etc/group if group wheel exists more than once:[1;32m PASSED[0m
+   [Test 2.12] Check in /etc/group if group cdrom exists more than once:[1;32m PASSED[0m
+   [Test 2.13] Check in /etc/group if group mail exists more than once:[1;32m PASSED[0m
+   [Test 2.14] Check in /etc/group if group man exists more than once:[1;32m PASSED[0m
+   [Test 2.15] Check in /etc/group if group dialout exists more than once:[1;32m PASSED[0m
+   [Test 2.16] Check in /etc/group if group floppy exists more than once:[1;32m PASSED[0m
+   [Test 2.17] Check in /etc/group if group games exists more than once:[1;32m PASSED[0m
+   [Test 2.18] Check in /etc/group if group tape exists more than once:[1;32m PASSED[0m
+   [Test 2.19] Check in /etc/group if group video exists more than once:[1;32m PASSED[0m
+   [Test 2.20] Check in /etc/group if group ftp exists more than once:[1;32m PASSED[0m
+   [Test 2.21] Check in /etc/group if group lock exists more than once:[1;32m PASSED[0m
+   [Test 2.22] Check in /etc/group if group audio exists more than once:[1;32m PASSED[0m
+   [Test 2.23] Check in /etc/group if group nobody exists more than once:[1;32m PASSED[0m
+   [Test 2.24] Check in /etc/group if group users exists more than once:[1;32m PASSED[0m
+   [Test 2.25] Check in /etc/group if group utmp exists more than once:[1;32m PASSED[0m
+   [Test 2.26] Check in /etc/group if group utempter exists more than once:[1;32m PASSED[0m
+   [Test 2.27] Check in /etc/group if group input exists more than once:[1;32m PASSED[0m
+   [Test 2.28] Check in /etc/group if group systemd-journal exists more than once:[1;32m PASSED[0m
+   [Test 2.29] Check in /etc/group if group systemd-network exists more than once:[1;32m PASSED[0m
+   [Test 2.30] Check in /etc/group if group dbus exists more than once:[1;32m PASSED[0m
+   [Test 2.31] Check in /etc/group if group polkitd exists more than once:[1;32m PASSED[0m
+   [Test 2.32] Check in /etc/group if group ssh_keys exists more than once:[1;32m PASSED[0m
+   [Test 2.33] Check in /etc/group if group cgred exists more than once:[1;32m PASSED[0m
+   [Test 2.34] Check in /etc/group if group sshd exists more than once:[1;32m PASSED[0m
+   [Test 2.35] Check in /etc/group if group postdrop exists more than once:[1;32m PASSED[0m
+   [Test 2.36] Check in /etc/group if group postfix exists more than once:[1;32m PASSED[0m
+   [Test 2.37] Check in /etc/group if group chrony exists more than once:[1;32m PASSED[0m
+   [Test 2.38] Check in /etc/group if group ssm-user exists more than once:[1;32m PASSED[0m
+   [Test 2.39] Check in /etc/group if group pety exists more than once:[1;32m PASSED[0m
+   [Test 2.40] Check in /etc/group if group ntp exists more than once:[1;32m PASSED[0m
+   [Test 2.41] Check in /etc/group if group LinuxUsers exists more than once:[1;32m PASSED[0m
+
+++ Req 64: The shadow group must be empty (only Debian-based Linux distributions).
+   [Test -.--] Check /etc/passwd if user is member in shadow group: n/a (only Ubuntu)
+
+++ Req 65: No files and directories without assigned user or group must exist.
+   [Test 1.01] Check if directories/files without assigned user exist:[1;32m PASSED[0m
+   [Test 2.01] Check if directories/files without assigned group exist:[1;32m PASSED[0m
+
+++ Req 66: Permissions of security relevant configuration files must have
+   the distribution default values or more restrictive.
+   [Test 1.01] Check file (/etc/passwd) for correct user root:[1;32m PASSED[0m
+   [Test 2.01] Check file (/etc/passwd) for correct group root:[1;32m PASSED[0m
+   [Test 3.01] Check file (/etc/passwd) for correct privileges 644:[1;32m PASSED[0m
+   [Test 1.02] Check file (/etc/passwd) for correct user root:[1;32m PASSED[0m
+   [Test 2.02] Check file (/etc/passwd) for correct group root:[1;32m PASSED[0m
+   [Test 3.02] Check file (/etc/passwd) for correct privileges 644:[1;32m PASSED[0m
+   [Test 1.03] Check file (/etc/shadow) for correct user root:[1;32m PASSED[0m
+   [Test 2.03] Check file (/etc/shadow) for correct group root:[1;32m PASSED[0m
+   [Test 3.03] Check file (/etc/shadow) for correct privileges 0:[1;32m PASSED[0m
+   [Test 1.04] Check file (/etc/shadow-) for correct user root:[1;32m PASSED[0m
+   [Test 2.04] Check file (/etc/shadow-) for correct group root:[1;32m PASSED[0m
+   [Test 3.04] Check file (/etc/shadow-) for correct privileges 0:[1;32m PASSED[0m
+   [Test 1.05] Check file (/etc/group) for correct user root:[1;32m PASSED[0m
+   [Test 2.05] Check file (/etc/group) for correct group root:[1;32m PASSED[0m
+   [Test 3.05] Check file (/etc/group) for correct privileges 644:[1;32m PASSED[0m
+   [Test 1.06] Check file (/etc/group-) for correct user root:[1;32m PASSED[0m
+   [Test 2.06] Check file (/etc/group-) for correct group root:[1;32m PASSED[0m
+   [Test 3.06] Check file (/etc/group-) for correct privileges 644:[1;32m PASSED[0m
+   [Test 1.07] Check file (/boot/grub2/grub.cfg) for correct user root:[1;32m PASSED[0m
+   [Test 2.07] Check file (/boot/grub2/grub.cfg) for correct group root:[1;32m PASSED[0m
+   [Test 3.07] Check file (/boot/grub2/grub.cfg) for correct privileges 644:[1;32m PASSED[0m
+   [Test 1.08] Check file (/etc/sysctl.conf) for correct user root:[1;32m PASSED[0m
+   [Test 2.08] Check file (/etc/sysctl.conf) for correct group root:[1;32m PASSED[0m
+   [Test 3.08] Check file (/etc/sysctl.conf) for correct privileges 644:[1;32m PASSED[0m
+   [Test 1.09] Check file (/etc/ssh/sshd_config) for correct user root:[1;32m PASSED[0m
+   [Test 2.09] Check file (/etc/ssh/sshd_config) for correct group root:[1;32m PASSED[0m
+   [Test 3.09] Check file (/etc/ssh/sshd_config) for correct privileges 600:[1;32m PASSED[0m
+   [Test 1.10] Check file (/etc/gshadow) for correct user root:[1;32m PASSED[0m
+   [Test 2.10] Check file (/etc/gshadow) for correct group root:[1;32m PASSED[0m
+   [Test 3.10] Check file (/etc/gshadow) for correct privileges 0:[1;32m PASSED[0m
+   [Test 1.11] Check file (/etc/gshadow-) for correct user root:[1;32m PASSED[0m
+   [Test 2.11] Check file (/etc/gshadow-) for correct group root:[1;32m PASSED[0m
+   [Test 3.11] Check file (/etc/gshadow-) for correct privileges 0:[1;32m PASSED[0m
+
+... Testing finished
+
+[Pre-Check] Load test cases from file /var/tmp/tel-it-security-automation_pety/testing/test_ssh.sh:[1;32m PASSED[0m
+[Pre-Check] Write SoC for PSA to soc-ssh-rhel7.9-(2021-19-05).csv:[1;32m PASSED[0m
+[Pre-Check] Check if OpenSSH is installed:[1;32m PASSED[0m
+[Pre-Check] Check if SSH deamon is running:[1;32m PASSED[0m
+[Pre-Check] Read variables from file vars_custom_ssh.sh:[1;32m PASSED[0m
+
+===============================================================================
+ Compliance Checks - SSH (3.04)
+===============================================================================
+Start testing ...
+
+++ Req 1: The SSH protocol version 2 must be used.
+   [Test 1.01] Check ssh protocol version:[1;32m PASSED[0m
+	[33mNOTE![0m SSH software version detected: 7.4.
+
+++ Req 2: SSH moduli smaller than 2048 must not be used.
+   [Test 1.01] Check if moduli >= 2048:[1;32m PASSED[0m
+
+++ Req 3: Only approved key exchange algorithms must be used.
+   [Test 1.01] Check key exchange algorithm curve25519-sha256@libssh.org:[1;32m PASSED[0m
+   [Test 1.02] Check key exchange algorithm diffie-hellman-group-exchange-sha256:[1;32m PASSED[0m
+   [Test 1.03] Check key exchange algorithm ecdh-sha2-nistp521:[1;32m PASSED[0m
+   [Test 1.04] Check key exchange algorithm ecdh-sha2-nistp384:[1;32m PASSED[0m
+   [Test 1.05] Check key exchange algorithm ecdh-sha2-nistp256:[1;32m PASSED[0m
+
+++ Req 4: Only approved ciphers algorithms must be used.
+   [Test 1.01] Check ciphers chacha20-poly1305@openssh.com:[1;32m PASSED[0m
+   [Test 1.02] Check ciphers aes256-gcm@openssh.com:[1;32m PASSED[0m
+   [Test 1.03] Check ciphers aes128-gcm@openssh.com:[1;32m PASSED[0m
+   [Test 1.04] Check ciphers aes256-ctr:[1;32m PASSED[0m
+   [Test 1.05] Check ciphers aes192-ctr:[1;32m PASSED[0m
+   [Test 1.06] Check ciphers aes128-ctr:[1;32m PASSED[0m
+
+++ Req 5: Only approved MAC algorithms must be used.
+   [Test 1.01] Check mac algorithm hmac-sha2-512-etm@openssh.com:[1;32m PASSED[0m
+   [Test 1.02] Check mac algorithm hmac-sha2-256-etm@openssh.com:[1;32m PASSED[0m
+   [Test 1.03] Check mac algorithm hmac-sha2-512:[1;32m PASSED[0m
+   [Test 1.04] Check mac algorithm hmac-sha2-256:[1;32m PASSED[0m
+
+++ Req 6: Only approved Host Key Algorithms (a.k.a. public key signature algorithms
+   or server authentication algorithms) must be used.
+   [Test 1.01] Check host key algorithm ecdsa-sha2-nistp256-cert-v01@openssh.com:[1;32m PASSED[0m
+   [Test 1.02] Check host key algorithm ecdsa-sha2-nistp384-cert-v01@openssh.com:[1;32m PASSED[0m
+   [Test 1.03] Check host key algorithm ecdsa-sha2-nistp521-cert-v01@openssh.com:[1;32m PASSED[0m
+   [Test 1.04] Check host key algorithm ecdsa-sha2-nistp256:[1;32m PASSED[0m
+   [Test 1.05] Check host key algorithm ecdsa-sha2-nistp384:[1;32m PASSED[0m
+   [Test 1.06] Check host key algorithm ecdsa-sha2-nistp521:[1;32m PASSED[0m
+   [Test 1.07] Check host key algorithm ssh-ed25519-cert-v01@openssh.com:[1;32m PASSED[0m
+   [Test 1.08] Check host key algorithm ssh-ed25519:[1;32m PASSED[0m
+
+++ Req 7: SSH logging must be enabled.
+   [Test 1.01] Check if LogLevel is INFO:[1;32m PASSED[0m
+
+++ Req 8: SSH LoginGraceTime must be set to one minute or less.
+   [Test 1.01] Check if LoginGraceTime is 3m:[1;32m PASSED[0m
+
+++ Req 9: SSH MaxAuthTries must be set to 5 or less.
+   [Test 1.01] Check if MaxAuthTries is 5:[1;32m PASSED[0m
+
+++ Req 10: SSH root login must be disabled.
+   [Test 1.01] Check if PermitRootLogin is no:[1;32m PASSED[0m
+
+++ Req 11: SSH strict mode must be enabled.
+   [Test 1.01] Check if StrictModes is yes:[1;32m PASSED[0m
+
+++ Req 12: SSH user authentication must be done with public keys.
+   [Test 1.01] Check if PubkeyAuthentication is yes:[1;32m PASSED[0m
+
+++ Req 13: SSH password authentication must be disabled.
+   [Test 1.01] Check if PasswordAuthentication is no:[1;32m PASSED[0m
+
+++ Req 14: SSH IgnoreRhosts must be enabled.
+   [Test 1.01] Check if IgnoreRhosts is yes:[1;32m PASSED[0m
+
+++ Req 15: SSH HostbasedAuthentication must be disabled.
+   [Test 1.01] Check if HostbasedAuthentication is no:[1;32m PASSED[0m
+
+++ Req 16: The usage of the SSH service must be restricted to dedicated
+   groups or users.
+   [Test 1.01] Check if AllowUsers not exists:[1;32m PASSED[0m
+   [Test 1.02] Check if DenyGroups not exists:[1;32m PASSED[0m
+   [Test 1.03] Check if DenyUsers not exists:[1;32m PASSED[0m
+   [Test 2.01] Check AllowGroups:[1;31m FAILED[0m (wrong group LinuxUsers)
+
+++ Req 17: The SSH Idle Timeout Interval must be configured to an
+   adequate time.
+   [Test 1.01] Check if ClientAliveInterval is 300:[1;32m PASSED[0m
+   [Test 2.01] Check if ClientAliveCountMax is 0:[1;32m PASSED[0m
+
+++ Req 18: SSH tunnel devices must be disabled.
+   [Test 1.01] Check if PermitTunnel is no:[1;32m PASSED[0m
+
+++ Req 19: SSH TCP port forwarding must be disabled.
+   [Test 1.01] Check if AllowTcpForwarding is no:[1;32m PASSED[0m
+
+++ Req 20: SSH agent forwarding must be disabled.
+   [Test 1.01] Check if AllowAgentForwarding is no:[1;32m PASSED[0m
+
+++ Req 21: SSH gateway ports must be disabled.
+   [Test 1.01] Check if GatewayPorts is no:[1;32m PASSED[0m
+
+++ Req 22: SSH X11 forwarding must be disabled.
+   [Test 1.01] Check if X11Forwarding is no:[1;32m PASSED[0m
+
+++ Req 23: SSH PermitUserEnvironment must be disabled.
+   [Test 1.01] Check if PermitUserEnvironment is no:[1;32m PASSED[0m
+
+++ Req 24: SSH PermitEmptyPasswords must be disabled.
+   [Test 1.01] Check if PermitEmptyPasswords is no:[1;32m PASSED[0m
+
+++ Req 25: If SFTP is activated, internal server of OpenSSH must be used.
+   [Test -.--] Checks for requirement 25 disabled: SKIPPED (N/A)
+
+... Testing finished
+
+-------------------------------------------------------------------------------
+SUMMARY (Red Hat Enterprise Linux Server 7.9)
+-------------------------------------------------------------------------------
+Test Cases: 583  |  Passed: [1;32m523[0m  |  Failed: [1;31m41[0m  |  Skipped:19
+

@@ -1,0 +1,21 @@
+# test_linux.sh
+Req 4 - Disabled
+Req 5 - Disabled
+Req 30 - UTC configured + also check scripts needs to be adjusted because Europe/Berin is hardcoded there.
+ if [ "$(timedatectl | grep -ow "$TIMEZONE" | wc -l)" -ge "1" ]; then
+# nech je viac ako 1 lebo UTC je vy vystupe viac x
+
+Req 44
+#  PAM_MODULE_REDHAT="pam_faillock.so";
+  PAM_MODULE_REDHAT="pam_tally2.so";
+
+
+# test_ssh.sh
+LOGIN_GRACE_TIME=3m
+# these values adjusted in vars_custom_ssh.sh:
+ClientAliveInterval 300
+ClientAliveCountMax 0
+LoginGraceTime 3m
+
+
+
