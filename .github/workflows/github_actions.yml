@@ -3,7 +3,7 @@ name: My Workflow
 on: [push]
 
 jobs:
-  runMultipleCommands:
+  DownloadFileAndUploadToS3:
     runs-on: ubuntu-latest
     steps:
      - uses: actions/checkout@v1
