@@ -11,4 +11,4 @@ jobs:
         echo "Going to download a .zip file of repo...."
         wget https://github.com/PeterBarczi/automation/archive/refs/heads/main.zip
         echo "File Downloaded?"
-     - run: echo "One last message"
+     - run: echo "One last message "
