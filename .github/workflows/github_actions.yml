@@ -13,3 +13,8 @@ jobs:
           echo "File Downloaded?"
       - run: echo "One last message "
       - uses: medlypharmacy/s3-artifacts-action@master
+        with:
+          AWS_ACCESS_KEY_ID: ${{ secrets.S3_BUILD_ARTIFACTS_ACCESS_KEY_ID}}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.S3_BUILD_ARTIFACTS_SECRET_ACCESS_KEY}}
+          AWS_S3_BUCKET_NAME: ${{ secrets.S3_BUCKET_NAME }}
+          source_path: './main.zip'
