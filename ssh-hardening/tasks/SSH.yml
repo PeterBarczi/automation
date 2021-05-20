@@ -19,27 +19,28 @@
     owner: "root"
     group: "root"
     backup: yes
-#   validate: "httpd -t -f %s" 
+    validate: "sshd -t -f %s" 
   notify: restart sshd
 
-- name: Check Server Role
-  command: "grep -i cds /etc/hostname"
-  register: check_role
-  failed_when: ( check_role.rc not in [ 0, 1 ] )
-  changed_when: false
+#- name: Check Server Role
+#  command: "grep -i cds /etc/hostname"
+#  register: check_role
+#  failed_when: ( check_role.rc not in [ 0, 1 ] )
+#  changed_when: false
 
 - name: Set Allow Groups
   lineinfile:
     path: /etc/ssh/sshd_config
     line: 'AllowGroups {{ allowgroups }}'
+    validate: "sshd -t -f %s" 
   changed_when: false
 
-- name: Set Allow Users
-  lineinfile:
-    path: /etc/ssh/sshd_config
-    line: 'AllowUsers {{ allowusers }}'
-  when: check_role.rc == 0
-  changed_when: false
+#- name: Set Allow Users
+#  lineinfile:
+#    path: /etc/ssh/sshd_config
+#    line: 'AllowUsers {{ allowusers }}'
+#  when: check_role.rc == 0
+#  changed_when: false
 
 - name: SSH Moduli
   shell: sed -i '/ [1]... \| 2047 /d' /etc/ssh/moduli
