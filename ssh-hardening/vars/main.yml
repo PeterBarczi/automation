@@ -4,7 +4,7 @@
 
 # SSH
 allowgroups: LinuxUsers ssm-user
-allowusers: pety
+allowusers: pety bob mike
 
 # Users to be deleted
 users_to_delete: ec2-user
