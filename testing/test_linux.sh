@@ -1299,10 +1299,11 @@ write_to_soc $FAIL $PASS $SKIP "$TXT"
 REMARK="REMARK_$REQ_NR"
 REQ_TXT="User accounts must be used that allow unambiguous identification of the user."
 initiate_test
+ALLOWED_USERS="ssm-user A11343771 A319671 A11112 A352183"
 
 if [ "${!REQ}" == "TRUE" ] || [ ! ${!REQ} ]; then
 
-  # Test 1/1
+  # Test 1/1 
   NUM=1
   ACCOUNTS=$(awk -v var="${!NOLOGIN_PATH}" -F':' '{ if ( $3 >= 1000 && $7 != var && $7 != "/bin/false") print $1 }' /etc/passwd)
   for USER in $ALLOWED_USERS; do
