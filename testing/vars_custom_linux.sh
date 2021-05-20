@@ -35,7 +35,7 @@ REQ1="TRUE"
 REMARK_REQ1=""
 
         # Define allowed TCP/UDP ports. Example: TCP_PORTS="22 80 443" 
-        TCP_PORTS="22"
+        TCP_PORTS="22 80 443"
         UDP_PORTS="68 123"
 
 # Req-2: The reachability of services must be restricted.

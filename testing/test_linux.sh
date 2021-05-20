@@ -115,11 +115,13 @@ MAC_SOLUTION="MAC_SOLUTION_$OS_MAIN_DISTRO";
 # compliance!
 
 # Req 1: Unused services and protocols must be deactivated.
+TCP_PORTS="22 80 443"
+UDP_PORTS="68 123"
 if [ ! "$TCP_PORTS" ]; then TCP_PORTS=""; fi  # default
 if [ ! "$UDP_PORTS" ]; then UDP_PORTS=""; fi  # default
 
 # Req 2: The reachability of services must be restricted.
-FIREWALL_SOLUTION="iptables"
+#FIREWALL_SOLUTION="iptables"
 UBUNTU_IPTABLES_TOOLS="iptables-persistent"
 REDHAT_IPTABLES_TOOLS="iptables-services"
 
@@ -200,6 +202,7 @@ IPV4_23="net.ipv4.conf.all.arp_accept 0"
 
 # Req 16: IPv6 protocol stack must be securely configured.
 NO_V6=0
+IPV6_CHECK="OFF"
 if [ "$IPV6_CHECK" == "OFF" ]; then NO_V6=1; fi
 IPV6_1="net.ipv6.conf.all.disable_ipv6 $NO_V6"
 IPV6_2="net.ipv6.conf.default.disable_ipv6 $NO_V6"
@@ -2518,7 +2521,7 @@ write_to_soc $FAIL $PASS $SKIP "$TXT"
 REQ_TXT="If iptables is used, policies for loopback traffic must be configured."
 initiate_test
 
-if [ "${!REQ}" == "TRUE" ] || [ ! ${!REQ} ]; then
+if [ "${!REQ}" == "FALSE" ] || [ ! ${!REQ} ]; then
 
   # Test 1/2
   NUM=1
@@ -2572,9 +2575,10 @@ write_to_soc $FAIL $PASS $SKIP "$TXT"
 # Req 47: If iptables is used, policies for outbound and established 
 #         connections must be configured.
 REQ_TXT="If iptables is used, policies for outbound and established connections\n   must be configured."
+IPV6_CHECK="OFF"
 initiate_test
 
-if [ "${!REQ}" == "TRUE" ] || [ ! ${!REQ} ]; then
+if [ "${!REQ}" == "FALSE" ] || [ ! ${!REQ} ]; then
 
   # Test 1/2
   NUM=1
@@ -2629,7 +2633,7 @@ write_to_soc $FAIL $PASS $SKIP "$TXT"
 REQ_TXT="If iptables is used, policies must exist for all ports in\n   listening state." 
 initiate_test
 
-if [ "${!REQ}" == "TRUE" ] || [ ! ${!REQ} ]; then
+if [ "${!REQ}" == "FALSE" ] || [ ! ${!REQ} ]; then
 
   if [ -n "$TCP_PORTS" ]; then 
      
@@ -2767,7 +2771,7 @@ write_to_soc $FAIL $PASS $SKIP "$TXT"
 REQ_TXT="If iptables is used, the default policy for tables INPUT and FORWARD\n   must be configured to drop all traffic."
 initiate_test
 
-if [ "${!REQ}" == "TRUE" ] || [ ! ${!REQ} ]; then
+if [ "${!REQ}" == "FALSE" ] || [ ! ${!REQ} ]; then
 
   # Test 1/2
   NUM=1
