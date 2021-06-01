@@ -13,6 +13,12 @@
     warn: false
   changed_when: false
 
+- name: Disable motd library
+  shell: sed -i '/pam_motd.so/d' /etc/pam.d/sshd
+  args:
+    warn: false
+  changed_when: false
+
 - name: Set MIN and MAX encryption rounds parameters in login.defs
   blockinfile:
     path: /etc/login.defs
