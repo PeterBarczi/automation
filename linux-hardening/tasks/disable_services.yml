@@ -1,0 +1,5 @@
+--- # Req 1
+- name: Disable Unused Services
+  service: name={{ item }} state=stopped enabled=no
+  with_items:
+    - rpcbind

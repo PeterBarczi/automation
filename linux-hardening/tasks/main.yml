@@ -1,4 +1,7 @@
 ---
+# Disable Unused Services
+ - name: Disable Unused Services
+   include_tasks: disable_services.yml
 # Disable SELINUX
  - name: Disable SELINUX
    include_tasks: selinux.yml
