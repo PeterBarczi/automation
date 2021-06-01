@@ -21,13 +21,13 @@
 
 - name: Configure AUDITD rules (RHEL)
   template:
-    src: "audit.rules_rhel.j2"
+    src: "audit.rules_rhel7.j2"
     dest: "/etc/audit/rules.d/audit.rules"
     mode: 0600
     owner: "root"
     group: "root"
   notify: restart auditd
-  when: ansible_distribution == "RedHat"
+  when: ansible_distribution == "RedHat" and ansible_distribution_major_version == '7'
 
 - name: Configure AUDITD rules (RHEL8)
   template:
