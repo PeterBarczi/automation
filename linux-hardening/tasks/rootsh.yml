@@ -1,16 +1,18 @@
 --- # 
-- name: Deploy rootsh binary 
+- name: Copy .rpm file to server
   copy:
-    src: "rootsh"
-    dest: "/usr/bin/rootsh"
-    mode: 0755
-    owner: "root"
-    group: "root"
+     src: rootsh-1.5.3-17.el7.x86_64.rpm
+     dest: /tmp/rootsh-1.5.3-17.el7.x86_64.rpm
+  when: ansible_distribution == "RedHat"
 
-- name: Create log dir
+- name: Install rootsh Package
+  yum:
+     name: /tmp/rootsh-1.5.3-17.el7.x86_64.rpm
+     state: present
+  when: ansible_distribution == "RedHat"
+
+- name: Remove .rpm
   file:
-    path: "/var/log/rootsh"
-    state: directory
-    mode: 0700
-    owner: root
-    group: root
+    path: "/tmp/rootsh-1.5.3-17.el7.x86_64.rpm"
+    state: absent
+  when: ansible_distribution == "RedHat"
