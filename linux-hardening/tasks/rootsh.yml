@@ -2,7 +2,7 @@
 - name: Deploy rootsh binary 
   copy:
     src: "rootsh"
-    dest: "/usr/local/bin/rootsh"
+    dest: "/usr/bin/rootsh"
     mode: 0755
     owner: "root"
     group: "root"
