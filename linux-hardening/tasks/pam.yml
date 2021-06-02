@@ -30,9 +30,21 @@
     create: no
     backup: no
 
-- name: Deploy PAM files (RHEL)
+- name: Deploy PAM files (RHEL7)
   copy:
-    src: "pam/system-password-auth"
+    src: "pam/system-password-auth.rhel7"
+    dest: "{{ item }}"
+    mode: 0644
+    owner: "root"
+    group: "root"
+  with_items:
+    - /etc/pam.d/system-auth
+    - /etc/pam.d/password-auth
+  when: ansible_distribution == "RedHat" and ansible_distribution_major_version == '7'
+
+- name: Deploy PAM files (RHEL8)
+  copy:
+    src: "pam/system-password-auth.rhel8"
     dest: "{{ item }}"
     mode: 0644
     owner: "root"
@@ -40,7 +52,7 @@
   with_items:
     - /etc/pam.d/system-auth
     - /etc/pam.d/password-auth 
-  when: ansible_distribution == "RedHat"
+  when: ansible_distribution == "RedHat" and ansible_distribution_major_version == '8'
 
 - name: Deploy PAM files (SLES)
   copy:
