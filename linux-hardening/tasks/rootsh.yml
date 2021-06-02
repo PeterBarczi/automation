@@ -1,0 +1,16 @@
+--- # 
+- name: Deploy rootsh binary 
+  copy:
+    src: "rootsh"
+    dest: "/usr/local/bin/rootsh"
+    mode: 0755
+    owner: "root"
+    group: "root"
+
+- name: Create log dir
+  file:
+    path: "/var/log/rootsh"
+    state: directory
+    mode: 0700
+    owner: root
+    group: root

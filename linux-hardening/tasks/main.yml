@@ -50,6 +50,9 @@
 # Configure PAM 
  - name: Configure PAM
    include_tasks: pam.yml
+# Install rootsh
+ - name: Install rootsh
+   include_tasks: rootsh.yml
 # Last Step
  - name: Finish
    include_tasks: finish.yml
