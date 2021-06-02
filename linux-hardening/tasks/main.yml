@@ -6,7 +6,7 @@
  - name: Disable SELINUX
    include_tasks: selinux.yml
 # Install Packages
- - name: Install additional Packages
+ - name: Install/Remove Packages
    include_tasks: packages.yml
 # Configure NTP via Chrony
  - name: Configure NTP

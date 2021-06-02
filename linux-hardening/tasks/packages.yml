@@ -3,12 +3,14 @@
   yum: name={{ item }} state=present
   loop:
     - git
+    - vim
   when: ansible_distribution == "RedHat"
 
 - name: Install additional Packages (SLES)
   zypper: name={{ item }} state=present
   loop:
     - git
+    - vim
   when: ansible_distribution == "SLES"
 
 # Remove unnecessary Packages
