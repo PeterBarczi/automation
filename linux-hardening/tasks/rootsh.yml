@@ -9,6 +9,7 @@
   yum:
      name: /tmp/rootsh-1.5.3-17.el7.x86_64.rpm
      state: present
+     disable_gpg_check: yes
   when: ansible_distribution == "RedHat"
 
 - name: Remove .rpm
