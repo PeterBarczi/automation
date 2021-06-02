@@ -6,6 +6,13 @@
     remove: yes
   with_items: '{{ users_to_delete }}'
 
+- name: Remove sudo 
+  shell: sed -i '/{{ item }}/d' /etc/sudoers
+  args:
+    warn: false
+  changed_when: false
+  with_items: '{{ users_to_delete }}'
+
 - name: Set permissions for ssm-user's home dir
   file:
     path: "/home/ssm-user"
