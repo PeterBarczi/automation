@@ -2440,8 +2440,8 @@ initiate_test
 
 if [ "${!REQ}" == "TRUE" ] || [ ! ${!REQ} ]; then
 
-#  PAM_MODULE_REDHAT="pam_faillock.so";
-  PAM_MODULE_REDHAT="pam_tally2.so";
+  PAM_MODULE_REDHAT="pam_faillock.so";
+#  PAM_MODULE_REDHAT="pam_tally2.so";
   PAM_MODULE_SUSE="pam_tally2.so";
   PAM_MODULE_DEBIAN="pam_tally2.so";
   PAM_MODULE_OS="PAM_MODULE_$OS_MAIN_DISTRO";
