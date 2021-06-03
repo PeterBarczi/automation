@@ -4,3 +4,4 @@
   with_items:
     - rpcbind
     - rpcbind.socket
+  ignore_errors: yes
