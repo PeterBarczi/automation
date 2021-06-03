@@ -3,3 +3,5 @@
   selinux:
     state: disabled
   when: ansible_distribution == "RedHat"
+  register: result
+  failed_when: result.msg | default('ok', True) is not search('(^ok$|libselinux-python|(SELinux state changed))')
