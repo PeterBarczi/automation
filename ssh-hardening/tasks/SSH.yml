@@ -38,11 +38,12 @@
   changed_when: false
 
 - name: Add rhui-user to Allow Groups
-  lineinfile:
-    path: /etc/ssh/sshd_config
-    regexp: '^AllowGroups'
-    line: rhui-user
-    backrefs: yes
+  replace:
+    backup: yes
+    dest: /etc/ssh/sshd_config
+    regexp: '^(AllowGroups(?!.*\b{{ rhui-user }}\b).*)$'
+    replace: '\1 {{ rhui-user }}'
+    validate: "sshd -t -f %s"
   when: check_user.rc == 0
 
 - name: SSH Moduli
