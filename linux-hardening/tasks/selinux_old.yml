@@ -1,14 +1,7 @@
 --- # Req 30
 - name: Disable SELINUX
-  shell: sed -i '/^SELINUX=/s/.*/SELINUX=disabled/' /etc/selinux/config
-  register: selinux
-  args:
-    warn: false
+  selinux:
+    state: disabled
   when: ansible_distribution == "RedHat"
-  failed_when: ( selinux.rc not in [ 0, 1 ] )
-
-- name: Trigger autorelabel
-  file:
-    path: "/.autorelabel"
-    state: touch
-  when: selinux.changed
+  register: result
+  failed_when: result.msg | default('ok', True) is not search('(^ok$|libselinux-python|(SELinux state changed))')
