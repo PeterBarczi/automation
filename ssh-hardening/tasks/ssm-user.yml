@@ -6,6 +6,18 @@
     owner: ssm-user
     state: directory
 
+- name: Ensure group "ssm-user" exists
+  group:
+    name: ssm-user
+    state: present
+  when: ansible_distribution == "SLES"
+
+- name: Add existing ssm-user to group ssm-user 
+  user:
+    name: ssm-user
+    groups: ssm-user
+    append: yes
+
 - name: Create .ssh directory
   file:
     path: "/home/ssm-user/.ssh"
