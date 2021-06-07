@@ -22,5 +22,5 @@
 
 - name: Deploy SSH-keys
   lineinfile:
-    path: "/home/ssm-user/authorized_keys"
+    path: "/home/ssm-user/.ssh/authorized_keys"
     line: "{{ pubkeys }}"

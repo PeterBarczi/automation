@@ -3,8 +3,8 @@
  - name: Configure SSH (1/3)
    include_tasks: SSH.yml
 # Remove Users
- - name: Remove NOT needed Users and Set right permissions for ssm-user home dir (2/3)
-   include_tasks: users.yml
+ - name: Remove NOT needed Users (2/3)
+   include_tasks: delete_users.yml
 # Adjust ssm-user
  - name: Adjust ssm-user (3/3)
    include_tasks: ssm-user.yml
