@@ -11,6 +11,14 @@
     state: installed
   when: ansible_distribution == "SLES"
 
+- name: Check if rhui-user exists
+  command: id rhui-user
+  register: check_user
+  failed_when: ( check_user.rc not in [ 0, 1 ] )
+  args:
+    warn: false
+  changed_when: false
+
 - name: Deploy SSHD config
   template:
     src: sshd_config.j2
@@ -28,6 +36,13 @@
     line: 'AllowGroups {{ allowgroups }}'
     validate: "sshd -t -f %s" 
   changed_when: false
+
+- name: Add rhui-user to Allow Groups
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^AllowGroups'
+    line: rhui-user
+  when: check_user.rc == 0
 
 - name: SSH Moduli
   shell: sed -i '/ [1]... \| 2047 /d' /etc/ssh/moduli
