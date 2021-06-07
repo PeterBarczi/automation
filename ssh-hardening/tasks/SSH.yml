@@ -42,6 +42,7 @@
     path: /etc/ssh/sshd_config
     regexp: '^AllowGroups'
     line: rhui-user
+    backrefs: yes
   when: check_user.rc == 0
 
 - name: SSH Moduli
