@@ -38,11 +38,13 @@
   changed_when: false
 
 - name: Add rhui-user to Allow Groups
+  vars: 
+    group_to_add:  rhui-user
   replace:
     backup: yes
     dest: /etc/ssh/sshd_config
-    regexp: '^(AllowGroups(?!.*\b{{ rhui-user }}\b).*)$'
-    replace: '\1 {{ rhui-user }}'
+    regexp: '^(AllowGroups(?!.*\b{{ group_to_add }}\b).*)$'
+    replace: '\1 {{ group_to_add }}'
     validate: "sshd -t -f %s"
   when: check_user.rc == 0
 
