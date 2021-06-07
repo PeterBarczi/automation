@@ -23,6 +23,6 @@
     group: ssm-user
 
 - name: Deploy SSH-keys
-  lineinfile:
-    path: "/home/ssm-user/.ssh/authorized_keys"
-    line: "{{ pubkeys }}"
+  copy: 
+    content: "{{ pubkeys }}"
+    dest: "/home/ssm-user/.ssh/authorized_keys"
