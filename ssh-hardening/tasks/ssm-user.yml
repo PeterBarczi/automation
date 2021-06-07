@@ -6,16 +6,10 @@
     owner: ssm-user
     state: directory
 
-- name: Ensure group "ssm-user" exists
-  group:
-    name: ssm-user
-    state: present
-  when: ansible_distribution == "SLES"
-
-- name: Add existing ssm-user to group ssm-user 
+- name: Add existing ssm-user to group LinuxUsers
   user:
     name: ssm-user
-    groups: ssm-user
+    groups: LinuxUsers
     append: yes
 
 - name: Create .ssh directory
@@ -24,7 +18,6 @@
     state: directory
     mode: 0700
     owner: ssm-user
-    group: ssm-user
 
 - name: Create authorized_keys file
   file:
@@ -32,7 +25,6 @@
     state: touch
     mode: 0600
     owner: ssm-user
-    group: ssm-user
 
 - name: Deploy SSH-keys
   copy: 
