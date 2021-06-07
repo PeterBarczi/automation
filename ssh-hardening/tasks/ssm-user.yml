@@ -12,6 +12,7 @@
     state: directory
     mode: 0700
     owner: ssm-user
+    group: ssm-user
 
 - name: Create authorized_keys file
   file:
@@ -19,6 +20,7 @@
     state: touch
     mode: 0600
     owner: ssm-user
+    group: ssm-user
 
 - name: Deploy SSH-keys
   lineinfile:
