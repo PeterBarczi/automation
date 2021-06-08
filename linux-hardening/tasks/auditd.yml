@@ -19,7 +19,7 @@
     owner: "root"
     group: "root"
 
-- name: Configure AUDITD rules (RHEL)
+- name: Configure AUDITD rules (RHEL7)
   template:
     src: "audit.rules_rhel7.j2"
     dest: "/etc/audit/rules.d/audit.rules"
@@ -39,6 +39,15 @@
   notify: restart auditd
   when: ansible_distribution == "RedHat" and ansible_distribution_major_version == '8'
 
+- name: Configure AUDITD rules (SLES12)
+  template:
+    src: "audit.rules_sles12.j2"
+    dest: "/etc/audit/rules.d/audit.rules"
+    mode: 0600
+    owner: "root"
+    group: "root"
+  notify: restart auditd
+  when: ansible_distribution == "SLES"  and ansible_distribution_major_version == '12'
 
 - name: Configure AUDITD rules (SLES15)
   template:
@@ -48,7 +57,7 @@
     owner: "root"
     group: "root"
   notify: restart auditd
-  when: ansible_distribution == "SLES"
+  when: ansible_distribution == "SLES"  and ansible_distribution_major_version == '15'
 
 - meta: flush_handlers
 
