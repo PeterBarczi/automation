@@ -1,3 +1,4 @@
+# SLES12
 ## First rule - delete all
 -D
 
@@ -37,7 +38,7 @@
 -w /sbin/modprobe -p x -k modules
 -a always,exit -F arch=b64 -S init_module,delete_module -F key=modules
 -w /usr/bin/rpm -p x -k software_mgmt
--w /usr/bin/yum -p x -k software_mgmt
+-w /usr/bin/zypper -p x -k software_mgmt
 # Req 33: Access and Authentication events must be logged.
 -w /var/log/lastlog -p wa -k logins
 -w /etc/shadow -p wa -k identity
@@ -53,8 +54,22 @@
 -w /etc/selinux/ -p wa -k MAC-policy
 -w /var/log/faillog -p wa -k logins
 -w /var/log/tallylog -p wa -k logins
-# Privileged commands 
+# Privileged commands
 # -a always,exit -S all -F path=$CHK -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged
+-a always,exit -S all -F path=/usr/bin/opiepasswd -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged
+-a always,exit -S all -F path=/usr/bin/rcp -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged
+-a always,exit -S all -F path=/usr/bin/rsh -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged
+-a always,exit -S all -F path=/usr/bin/rlogin -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged
+-a always,exit -S all -F path=/sbin/unix2_chkpwd -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged
+-a always,exit -S all -F path=/sbin/unix_chkpwd -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged
+-a always,exit -S all -F path=/usr/bin/at -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged
+-a always,exit -S all -F path=/usr/bin/expiry -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged
+-a always,exit -S all -F path=/usr/bin/newgidmap -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged
+-a always,exit -S all -F path=/usr/bin/newuidmap -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged
+-a always,exit -S all -F path=/lib/dbus-1/dbus-daemon-launch-helper -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged
+-a always,exit -S all -F path=/usr/lib/utempter/utempter -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged
+-a always,exit -S all -F path=/usr/sbin/lockdev -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged
+-a always,exit -S all -F path=/sbin/mount.nfs -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged
 -a always,exit -S all -F path=/usr/bin/wall -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged
 -a always,exit -S all -F path=/usr/bin/chfn -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged
 -a always,exit -S all -F path=/usr/bin/chage -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged
@@ -94,7 +109,7 @@
 -w /etc/audit/audit.rules -p wa
 -a always,exit -F arch=b64 -S sethostname,setdomainname -F key=system-locale
 -w /etc/issue -p wa -k system-locale
-#-w /etc/issue.net -p wa -k system-locale
+-w /etc/issue.net -p wa -k system-locale
 -w /etc/hosts -p wa -k system-locale
 -w /etc/network? -p wa -k system-locale
 -w /etc/networks -p wa -k system-locale
@@ -108,6 +123,6 @@
 -w /etc/shells
 -w /var/log/messages
 -w /etc/sysconfig/network -p wa -k system-locale
-#-w /etc/sysconfig/network-scripts -p wa -k system-locale
+-w /etc/sysconfig/network-scripts -p wa -k system-locale
 #-w /var/log/auth.log
 #-w /var/log/system.log
