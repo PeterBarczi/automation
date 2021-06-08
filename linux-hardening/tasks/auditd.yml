@@ -40,9 +40,9 @@
   when: ansible_distribution == "RedHat" and ansible_distribution_major_version == '8'
 
 
-- name: Configure AUDITD rules (SLES)
+- name: Configure AUDITD rules (SLES15)
   template:
-    src: "audit.rules_sles.j2"
+    src: "audit.rules_sles15.j2"
     dest: "/etc/audit/rules.d/audit.rules"
     mode: 0600
     owner: "root"
