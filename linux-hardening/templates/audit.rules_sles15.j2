@@ -53,8 +53,18 @@
 -w /etc/selinux/ -p wa -k MAC-policy
 -w /var/log/faillog -p wa -k logins
 -w /var/log/tallylog -p wa -k logins
-# Privileged commands 
+# Privileged commands
 # -a always,exit -S all -F path=$CHK -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged
+-a always,exit -S all -F path=/sbin/unix2_chkpwd -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged
+-a always,exit -S all -F path=/sbin/unix_chkpwd -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged
+-a always,exit -S all -F path=/usr/bin/at -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged
+-a always,exit -S all -F path=/usr/bin/expiry -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged
+-a always,exit -S all -F path=/usr/bin/newgidmap -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged
+-a always,exit -S all -F path=/usr/bin/newuidmap -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged
+-a always,exit -S all -F path=/usr/lib/dbus-1/dbus-daemon-launch-helper -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged
+-a always,exit -S all -F path=/usr/lib/utempter/utempter -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged
+-a always,exit -S all -F path=/usr/sbin/lockdev -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged
+-a always,exit -S all -F path=/sbin/mount.nfs -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged
 -a always,exit -S all -F path=/usr/bin/wall -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged
 -a always,exit -S all -F path=/usr/bin/chfn -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged
 -a always,exit -S all -F path=/usr/bin/chage -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged
@@ -81,22 +91,10 @@
 #-a always,exit -S all -F path=/usr/libexec/utempter/utempter -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged
 #-a always,exit -S all -F path=/usr/libexec/dbus-1/dbus-daemon-launch-helper -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged
 #-a always,exit -S all -F path=/usr/libexec/openssh/ssh-keysign -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged
--a always,exit -S all -F path=/sbin/mount.nfs -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged
--a always,exit -S all -F path=/sbin/unix2_chkpwd -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged
--a always,exit -S all -F path=/sbin/unix_chkpwd -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged
--a always,exit -S all -F path=/usr/bin/at -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged
--a always,exit -S all -F path=/usr/bin/expiry -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged
--a always,exit -S all -F path=/usr/bin/newgidmap -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged
--a always,exit -S all -F path=/usr/bin/newgrp -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged
--a always,exit -S all -F path=/usr/bin/newuidmap -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged
--a always,exit -S all -F path=/usr/lib/dbus-1/dbus-daemon-launch-helper -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged
--a always,exit -S all -F path=/usr/lib/utempter/utempter -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged
--a always,exit -S all -F path=/usr/sbin/lockdev -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged
 #
 # Req 34: Account and Group Management events must be logged.
 -w /etc/passwd -p wa -k identity
 -w /etc/group -p wa -k identity
-#
 # Req 35: Configuration Change events must be logged.
 -w /var/log/audit/audit.log
 -w /var/log/audit/audit.log.[1-4]
