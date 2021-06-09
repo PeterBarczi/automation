@@ -54,7 +54,7 @@
     - /etc/pam.d/password-auth 
   when: ansible_distribution == "RedHat" and ansible_distribution_major_version == '8'
 
-- name: Deploy PAM files (SLES)
+- name: Deploy PAM files (SLES12)
   copy:
     src: "{{ item }}"
     dest: "/etc/pam.d/"
@@ -64,6 +64,20 @@
   with_items:
     - pam/common-account-pc
     - pam/common-auth-pc
-    - pam/common-password-pc
+    - pam/common-password-pc-sles12
     - pam/common-session-pc
-  when: ansible_distribution == "SLES"
+  when: ansible_distribution == "SLES" and ansible_distribution_major_version == '12'
+
+me: Deploy PAM files (SLES15)
+  copy:
+    src: "{{ item }}"
+    dest: "/etc/pam.d/"
+    mode: 0644
+    owner: "root"
+    group: "root"
+  with_items:
+    - pam/common-account-pc
+    - pam/common-auth-pc
+    - pam/common-password-pc-sles15
+    - pam/common-session-pc
+  when: ansible_distribution == "SLES" and ansible_distribution_major_version == '15'
