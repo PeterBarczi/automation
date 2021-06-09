@@ -96,4 +96,4 @@
     mode: 0644
     owner: "root"
     group: "root"
-  when: ansible_distribution == "SLES" and ansible_distribution_major_version == '12'
+  when: ansible_distribution == "SLES" and ansible_distribution_major_version == '15'
