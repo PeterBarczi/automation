@@ -68,7 +68,7 @@
     - pam/common-session-pc
   when: ansible_distribution == "SLES" and ansible_distribution_major_version == '12'
 
-me: Deploy PAM files (SLES15)
+- name: Deploy PAM files (SLES15)
   copy:
     src: "{{ item }}"
     dest: "/etc/pam.d/"
