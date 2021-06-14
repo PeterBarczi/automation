@@ -11,6 +11,6 @@
 - name: Disable login shell for system users 
   user: 
     name: "{{ item.item }}"
-    shell: /sbin/nologin
+    shell: /usr/sbin/nologin
   when: item.rc == 0
   with_items: "{{ user_info.results }}"
