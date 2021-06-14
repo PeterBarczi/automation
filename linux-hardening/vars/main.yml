@@ -42,3 +42,14 @@ ldap3: 5.198.215.12
 # pbarczi stuff
 user: pbarczi
 pubkey: ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAoK0wcgcOisP464u23v0X6qOX6I/SJMla62aOT/pHo6yb6COc4XeA8Pc1wpH8d3oXUsFokta/ezOyKy+rRt46Ii/d/txzpVi2kgsmN2DHztlWh8Kcec0TbhDZnUesh8/rbuJ6tP+1HSP7d8KCvtH9VJrEx9uq+z5sR4rMeC7lZxrwC5x1rbu5AKGmhP8ZWpNo5mooZdLvDdFdBj+U0otL1aztfQMbkiADRVH89erSA+ZjrkDNVVbuVw4zOmdNTI4k7boGG+IUSZPS3xp2alQRtG2y/oyo2ffAcZgh3qFnf8nI2UWRjct0MxyBW0De0BcK/zDvhB3CCArYsYDT9iJdTw== Peter Barczi peter.barczi@t-systems.com 00421557858553 BigData T-Systems Slovakia
+
+users_to_disable: 
+ - bin
+ - daemon
+ - news
+ - uucp
+ - games
+ - man 
+ - ftp
+ - at
+ - nobody

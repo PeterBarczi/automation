@@ -1,0 +1,16 @@
+--- # Disable login shell for system users
+- name: Check if the system  user exists
+  vars:
+  - usernames: "{{ users_to_disable }}"
+  shell: grep -q "{{ item }}" /etc/passwd
+  ignore_errors: yes
+  with_items: 
+    - "{{ usernames }}"
+  register: user_info
+
+- name: Disable login shell for system users 
+  user: 
+    name: "{{ item.item }}"
+    shell: /sbin/nologin
+  when: item.rc == 0
+  with_items: "{{ user_info.results }}"

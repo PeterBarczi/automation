@@ -53,6 +53,9 @@
 # Install rootsh
  - name: Install rootsh
    include_tasks: rootsh.yml
+# Disable login for system users 
+ - name: Disable login for system users 
+   include_tasks: disable_login.yml
 # Last Step
  - name: Finish
    include_tasks: finish.yml

@@ -1,0 +1,16 @@
+--- 
+- hosts: new_servers 
+  tasks: 
+  - include_vars: users.yml 
+
+- name: Check that user exists 
+  shell: "grep -q {{item.username}} /etc/passwd" 
+  ignore_errors: yes 
+  register: userexist 
+  with_items: "{{ users }}" 
+
+- name: Block user 
+    user: 
+    name: "{{item.username}}" 
+    shell: /bin/false 
+  when: userexist is succeeded with_items: "{{ users }}"
