@@ -4,6 +4,7 @@
   loop:
     - git
     - vim
+    - acl
   when: ansible_distribution == "RedHat"
 
 - name: Install additional Packages (SLES)
@@ -11,6 +12,7 @@
   loop:
     - git
     - vim
+    - acl
   when: ansible_distribution == "SLES"
 
 # Remove unnecessary Packages
