@@ -22,6 +22,9 @@ $ModLoad imjournal # provides access to the systemd journal
 
 #### GLOBAL DIRECTIVES ####
 
+# Default permissions for log files
+$FileCreateMode 0640
+
 # Where to place auxiliary files
 $WorkDirectory /var/lib/rsyslog
 
