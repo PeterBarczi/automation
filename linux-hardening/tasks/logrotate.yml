@@ -19,7 +19,7 @@
 
 - name: Adjust log rotate permissions for cwagent (RHEL8)
   copy:
-    src: "/etc/logrotate.d/syslog-rhel8"
+    src: "syslog-rhel8"
     dest: "/etc/logrotate.d/syslog"
     mode: 0644
     owner: "root"
