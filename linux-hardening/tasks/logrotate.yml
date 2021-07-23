@@ -1,8 +1,27 @@
 --- # Req 29
-- name: Deploy logrotate conf
+- name: Deploy logrotate.conf
   copy:
     src: "logrotate.conf"
     dest: "/etc/logrotate.conf"
     mode: 0644
     owner: "root"
     group: "root"
+  when: ansible_distribution != "RedHat" and ansible_distribution_major_version == '8'
+
+- name: Deploy logrotate.conf (RHEL8)
+  copy:
+    src: "logrotate.conf-rhel8"
+    dest: "/etc/logrotate.conf"
+    mode: 0644
+    owner: "root"
+    group: "root"
+  when: ansible_distribution == "RedHat" and ansible_distribution_major_version == '8'
+
+- name: Adjust log rotate permissions for cwagent (RHEL8)
+  copy:
+    src: "/etc/logrotate.d/syslog-rhel8"
+    dest: "/etc/logrotate.d/syslog"
+    mode: 0644
+    owner: "root"
+    group: "root"
+  when: ansible_distribution == "RedHat" and ansible_distribution_major_version == '8'
