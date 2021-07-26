@@ -9,6 +9,6 @@
     sharedscripts
     postrotate
         /usr/bin/systemctl kill -s HUP rsyslog.service >/dev/null 2>&1 || true
-        /usr/bin/setfacl -m u:cwagent:r-- /var/log/messages && /usr/bin/setfacl -m u:cwagent:r-- /var/log/secure
+        /usr/bin/setfacl -m u:cwagent:r-- /var/log/messages && /usr/bin/setfacl -m u:cwagent:r-- /var/log/secure && /usr/bin/setfacl -m u:cwagent:r-- /var/log/rootsh.log
     endscript
 }
