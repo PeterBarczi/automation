@@ -28,4 +28,9 @@
 
 - name: Triggers logs rotation
   command: "logrotate -f /etc/logrotate.conf"
+  register: check_logrotate
+  failed_when: ( check_logrotate.rc not in [ 0, 1 ] )
+  args:
+    warn: false
   changed_when: false
+
