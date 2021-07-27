@@ -1,6 +1,9 @@
-# Last step.
-- name: Finish.
+# Last Steps
+- name: Create tsy-info file as last finish step
   copy:
     dest: "/.tsy-info"
     content: |
-      Hardening done on {{ ansible_date_time.date }}.
+      TSY Hardening done on {{ ansible_date_time.date }} at {{ ansible_date_time.time }}.
+
+- name: Reboot the instance
+  command: "reboot"
