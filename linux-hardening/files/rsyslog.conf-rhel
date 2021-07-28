@@ -75,6 +75,8 @@ uucp,news.crit                                          /var/log/spooler
 # Save boot messages also to boot.log
 local7.*                                                /var/log/boot.log
 
+# Logging for rootsh
+local5.*                                                /var/log/rootshlog
 
 # ### begin forwarding rule ###
 # The statement between the begin ... end define a SINGLE forwarding

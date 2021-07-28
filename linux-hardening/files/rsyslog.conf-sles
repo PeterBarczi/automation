@@ -154,4 +154,9 @@ local6.*;local7.*                       -/var/log/localmessages
 #
 authpriv.*                               /var/log/secure
 
+#
+# Logging for rootsh
+#
+local5.*                                 /var/log/rootshlog
+
 ###

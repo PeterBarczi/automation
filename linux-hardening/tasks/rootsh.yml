@@ -15,13 +15,13 @@
     owner: root
     group: root
 
-- name: Set Cronjobs for rootsh logging 
-  blockinfile:
-    path: /etc/crontab
-    block: |
-      # rootsh
-      */1 *  *  *  * root find /var/log/rootsh/ -type f -mmin -1 -name '*.closed' -exec cat {} + >> /var/log/rootsh.log
-      1 0  *  *  *   root find /var/log/rootsh/ -type f -mtime +90 -name '*.closed' -exec rm -f {} +
-      #
-    create: no
-    backup: yes
+#- name: Set Cronjobs for rootsh logging 
+#  blockinfile:
+#    path: /etc/crontab
+#    block: |
+#      # rootsh
+#      */1 *  *  *  * root find /var/log/rootsh/ -type f -mmin -1 -name '*.closed' -exec cat {} + >> /var/log/rootsh.log
+#      1 0  *  *  *   root find /var/log/rootsh/ -type f -mtime +90 -name '*.closed' -exec rm -f {} +
+#      #
+#    create: no
+#    backup: yes
