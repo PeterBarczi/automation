@@ -7,7 +7,7 @@
     owner: "root"
     group: "root"
 
-- name: Create log dir for rootsh
+- name: Create Log dir for rootsh
   file:
     path: "/var/log/rootsh"
     state: directory
